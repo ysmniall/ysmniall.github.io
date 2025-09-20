@@ -48,8 +48,7 @@
             box-shadow: 0 10px 20px rgba(37, 64, 107, 0.2);
         }
         .card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 25px 50px rgba(100, 127, 188, 0.3);
+            box-shadow: 0 25px 50px rgba(100, 127, 188, 0.3); /* Removed scale(1.03) */
         }
         body.light .card:hover {
             box-shadow: 0 25px 50px rgba(37, 64, 107, 0.4);
@@ -66,10 +65,8 @@
             transform: scale(1.05);
         }
         .research-item {
-            cursor: pointer;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
         }
         .research-item:hover {
             opacity: 0.95;
@@ -77,22 +74,22 @@
         .research-content {
             display: none;
             opacity: 0;
-            transition: opacity 0.5s ease;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            margin-top: 1rem;
+            padding: 1rem;
             background: rgba(100, 127, 188, 0.3);
-            padding: 1.5rem;
-            z-index: 10;
+            border-left: 3px solid var(--accent-dark);
             border-radius: 8px;
         }
         body.light .research-content {
             background: rgba(37, 64, 107, 0.2);
+            border-left-color: var(--accent-light);
         }
-        .research-item.active .research-content {
+        .research-item:hover .research-content {
             display: block;
             opacity: 1;
+            transform: translateY(0);
         }
         .section-title {
             color: var(--title-dark);
@@ -168,7 +165,7 @@
         </button>
     </div>
     <!-- Hero Section -->
-    <section id="hero" class="hero-bg dark min-h-screen flex items-center justify-center text-center px-6 pt-20">
+    <section id="hero" class="hero-bg dark min-h-screen flex items-center justify-center text-center px-6 pt-20 max-w-6xl mx-auto">
         <div class="max-w-4xl mx-auto">
             <img src="https://raw.githubusercontent.com/ysmniall/ysmniall.github.io/refs/heads/main/images/profile.jpg" alt="Profile" class="w-36 h-36 md:w-48 md:h-48 rounded-full mx-auto mb-8 profile-img fade-in-up">
             <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-in-up hero-text section-text">Yasamin Tavakoli</h1>
@@ -183,7 +180,7 @@
         </div>
     </section>
     <!-- Professional Summary -->
-    <section id="summary" class="py-24 px-6">
+    <section id="summary" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title fade-in-up">Professional Summary</h2>
             <div class="card p-6 fade-in-up delay-200">
@@ -192,7 +189,7 @@
         </div>
     </section>
     <!-- Education -->
-    <section id="education" class="py-24 px-6">
+    <section id="education" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title fade-in-up">Education</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -219,7 +216,7 @@
         </div>
     </section>
     <!-- Skills -->
-    <section id="skills" class="py-24 px-6">
+    <section id="skills" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title fade-in-up">Skills</h2>
             <div class="grid md:grid-cols-3 gap-8">
@@ -257,11 +254,11 @@
         </div>
     </section>
     <!-- Research Experience -->
-    <section id="research" class="py-24 px-6">
+    <section id="research" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title fade-in-up">Research Experience</h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="research-item card p-6 fade-in-up delay-200" onclick="this.classList.toggle('active'); closeOthers(this)">
+                <div class="research-item card p-6 fade-in-up delay-200">
                     <img src="https://via.placeholder.com/400x300?text=Virtual+Sensor" alt="Virtual Sensor Project" class="w-full h-48 object-cover rounded-lg mb-4">
                     <h4 class="font-bold text-lg md:text-xl section-text">Master’s Thesis Project: Virtual Sensor Design for Electric Vehicles</h4>
                     <div class="research-content">
@@ -273,7 +270,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="research-item card p-6 fade-in-up delay-400" onclick="this.classList.toggle('active'); closeOthers(this)">
+                <div class="research-item card p-6 fade-in-up delay-400">
                     <img src="https://via.placeholder.com/400x300?text=Farsi+Sign+Language" alt="Farsi Sign Language Project" class="w-full h-48 object-cover rounded-lg mb-4">
                     <h4 class="font-bold text-lg md:text-xl section-text">Bachelor’s Thesis Project: Farsi Sign Language Recognition using Computer Vision</h4>
                     <div class="research-content">
@@ -285,11 +282,10 @@
                         </ul>
                     </div>
                 </div>
-                <div class="research-item card p-6 fade-in-up delay-600" onclick="this.classList.toggle('active'); closeOthers(this)">
+                <div class="research-item card p-6 fade-in-up delay-600">
                     <img src="https://via.placeholder.com/400x300?text=Persian+Food+RAG" alt="Persian Food RAG Project" class="w-full h-48 object-cover rounded-lg mb-4">
                     <h4 class="font-bold text-lg md:text-xl section-text">Research Project: Multimodal RAG System for Persian Food</h4>
                     <div class="research-content">
-                        <p class="text-sm section-text"></p>
                         <ul class="list-disc ml-4 text-base section-text">
                             <li>Led the end-to-end data collection and web scraping process using <strong>Selenium</strong> and <strong>BeautifulSoup</strong> to build a comprehensive dataset of local Persian foods from several provinces.</li>
                             <li>Designed and implemented a <strong>multimodal Retrieval-Augmented Generation (RAG) system</strong> to search and generate structured responses for Persian food recipes based on text and image queries.</li>
@@ -298,7 +294,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="research-item card p-6 fade-in-up delay-800" onclick="this.classList.toggle('active'); closeOthers(this)">
+                <div class="research-item card p-6 fade-in-up delay-800">
                     <img src="https://via.placeholder.com/400x300?text=Multilingual+Sign+Language" alt="Multilingual Sign Language Project" class="w-full h-48 object-cover rounded-lg mb-4">
                     <h4 class="font-bold text-lg md:text-xl section-text">Research Project: Multilingual Sign Language Model</h4>
                     <div class="research-content">
@@ -310,7 +306,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="research-item card p-6 fade-in-up delay-1000" onclick="this.classList.toggle('active'); closeOthers(this)">
+                <div class="research-item card p-6 fade-in-up delay-1000">
                     <img src="https://via.placeholder.com/400x300?text=Oral+Disease+Classification" alt="Oral Disease Classification Project" class="w-full h-48 object-cover rounded-lg mb-4">
                     <h4 class="font-bold text-lg md:text-xl section-text">Research Project: Oral Disease Classification using Histopathology Images</h4>
                     <div class="research-content">
@@ -323,7 +319,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="research-item card p-6 fade-in-up delay-1200" onclick="this.classList.toggle('active'); closeOthers(this)">
+                <div class="research-item card p-6 fade-in-up delay-1200">
                     <img src="https://via.placeholder.com/400x300?text=Digikala+Reviews" alt="Digikala Reviews Project" class="w-full h-48 object-cover rounded-lg mb-4">
                     <h4 class="font-bold text-lg md:text-xl section-text">Digikala User Review Analysis</h4>
                     <div class="research-content">
@@ -338,7 +334,7 @@
         </div>
     </section>
     <!-- Work Experience -->
-    <section id="work" class="py-24 px-6">
+    <section id="work" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title fade-in-up">Work Experience</h2>
             <div class="card p-6 fade-in-up delay-200">
@@ -353,7 +349,7 @@
         </div>
     </section>
     <!-- Teaching Experience -->
-    <section id="teaching" class="py-24 px-6">
+    <section id="teaching" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title fade-in-up">Teaching Experience</h2>
             <div class="card p-6 fade-in-up delay-200">
@@ -369,7 +365,7 @@
         </div>
     </section>
     <!-- Certifications -->
-    <section id="certifications" class="py-24 px-6">
+    <section id="certifications" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-title fade-in-up">Certifications</h2>
             <div class="grid md:grid-cols-2 gap-8">
@@ -417,7 +413,7 @@
         </div>
     </section>
     <!-- Contact -->
-    <section id="contact" class="py-24 px-6">
+    <section id="contact" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-4xl mx-auto text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-8 section-title fade-in-up">Get In Touch</h2>
             <p class="text-lg md:text-xl mb-8 section-text fade-in-up delay-200">+98 912 092 0893 | ysmntavakoli99@gmail.com</p>
@@ -453,18 +449,6 @@
             heroSection.classList.add('light');
             toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
         }
-        // Click-based Research Items
-        function closeOthers(activeItem) {
-            document.querySelectorAll('.research-item').forEach(item => {
-                if (item !== activeItem) item.classList.remove('active');
-            });
-        }
-        document.querySelectorAll('.research-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-                closeOthers(item);
-            });
-        });
         // Intersection Observer for Animations
         const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
