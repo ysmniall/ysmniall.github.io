@@ -13,17 +13,17 @@
             --text-dark: #ffffff;
             --accent-dark: #647FBC;
             --title-dark: #647FBC;
-            --background-light: #F1F5F9;
+            --background-light: #9ab2d9; 
             --text-light: #1F2937;
             --accent-light: #25406b;
-            --title-light: #425aa1;
+            --title-light: #203575;
         }
         body.dark {
             background: var(--primary-dark);
             color: var(--text-dark);
         }
         body.light {
-            background: var(--background-light);
+            background: var(--background-light); /* #9ab2d9 */
             color: var(--text-light);
         }
         body { font-family: 'Poppins', sans-serif; }
@@ -32,7 +32,7 @@
             background-size: cover;
         }
         .hero-bg.light {
-            background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="#25406b" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            background: linear-gradient(rgba(154, 178, 217, 0.8), rgba(154, 178, 217, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="#25406b" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>'); /* Updated gradient to #9ab2d9 */
             background-size: cover;
         }
         .card {
@@ -95,7 +95,7 @@
             color: var(--title-dark);
         }
         body.light .section-title {
-            color: var(--title-light);
+            color: var(--title-light); /* #203575 */
         }
         .section-text {
             color: var(--text-dark);
