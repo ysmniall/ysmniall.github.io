@@ -7,196 +7,191 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
       min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    .card {
+    .section-card {
+      background: rgba(255, 255, 255, 0.9);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 1rem;
     }
-    .card:hover {
+    .section-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
     .fade-in {
-      animation: fadeIn 1s ease-in-out;
+      animation: fadeIn 1s ease-in-out backwards;
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.1s; }
+    .fade-in:nth-child(2) { animation-delay: 0.3s; }
+    .fade-in:nth-child(3) { animation-delay: 0.5s; }
+    .fade-in:nth-child(4) { animation-delay: 0.7s; }
+    .fade-in:nth-child(5) { animation-delay: 0.9s; }
+    .fade-in:nth-child(6) { animation-delay: 1.1s; }
+    .fade-in:nth-child(7) { animation-delay: 1.3s; }
+    @media (max-width: 640px) {
+      .section-card {
+        margin-bottom: 1.5rem;
+      }
+      .header-links a {
+        display: block;
+        margin: 0.5rem 0;
+      }
     }
   </style>
 </head>
-<body class="font-sans text-gray-800">
-  <div class="max-w-4xl mx-auto p-6">
+<body class="text-gray-800">
+  <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
     <!-- Header -->
-    <header class="text-center py-6 mb-8 bg-white rounded-lg shadow-md card fade-in">
-      <h1 class="text-4xl font-bold text-blue-900">Yasamin Tavakoli</h1>
-      <p class="text-lg text-gray-600 mt-2">MS Candidate in Computer Engineering, Sharif University of Technology, Tehran, Iran</p>
-      <div class="mt-4 space-x-4">
-        <a href="tel:+989120920000" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">+98 912 092 0000</a>
-        <a href="mailto:ysmntavakoli99@gmail.com" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">ysmntavakoli99@gmail.com</a>
-        <a href="https://www.linkedin.com/in/yasamin-tavakoli-800943236/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">LinkedIn</a>
-        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition-colors" download>Download Resume (PDF)</a>
+    <header class="text-center py-8 mb-6 bg-white rounded-xl shadow-lg section-card fade-in">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-900">Yasamin Tavakoli</h1>
+      <p class="text-lg sm:text-xl text-gray-600 mt-2">MS Candidate in Computer Engineering</p>
+      <p class="text-sm sm:text-md text-gray-500">Sharif University of Technology, Tehran, Iran</p>
+      <div class="mt-4 flex justify-center space-x-4 header-links">
+        <a href="tel:+989120920000" class="text-purple-700 hover:text-purple-900 font-medium transition-colors">+98 912 092 0000</a>
+        <a href="mailto:ysmntavakoli99@gmail.com" class="text-purple-700 hover:text-purple-900 font-medium transition-colors">ysmntavakoli99@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yasamin-tavakoli-800943236/" class="text-purple-700 hover:text-purple-900 font-medium transition-colors">LinkedIn</a>
+        <a href="#" class="text-purple-700 hover:text-purple-900 font-medium transition-colors" download>Download Resume</a>
       </div>
     </header>
 
     <!-- Professional Summary -->
-    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
-      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Professional Summary</h2>
-      <p class="mt-4 text-gray-700">
-        A motivated Computer Engineer specializing in <strong>Computer Architecture</strong> with strong experience in <strong>Artificial Intelligence for Embedded Systems</strong> and <strong>Computer Vision</strong>. I have a particular focus on designing <strong>virtual sensors for EV battery management</strong> to address critical safety and cost challenges. I am seeking opportunities to leverage my AI and hardware skills to develop innovative solutions in the automotive industry.
-      </p>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
+        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">About Me</h2>
+        <p class="mt-4 text-gray-700 leading-relaxed">
+          A motivated Computer Engineer specializing in <strong>Computer Architecture</strong>, <strong>AI for Embedded Systems</strong>, and <strong>Computer Vision</strong>. I focus on designing <strong>virtual sensors for EV battery management</strong> to address safety and cost challenges, seeking to innovate in the automotive industry.
+        </p>
+      </div>
+    </div>
 
     <!-- Education -->
-    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
-      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Education</h2>
-      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
-        <li>
-          <strong>Master of Science in Computer Engineering</strong>, Sharif University of Technology, Tehran, Iran
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li><strong>Concentration:</strong> Computer Architecture</li>
-            <li><strong>Expected Graduation:</strong> January 2026</li>
-            <li><strong>GPA:</strong> 17.61/20 (approx. 3.7/4)</li>
-            <li>Admitted as an <strong>Exceptional Talent Student</strong></li>
-          </ul>
-        </li>
-        <li>
-          <strong>Bachelor of Science in Computer Engineering</strong>, Babol Noshirvani University of Technology, Babol, Iran
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li><strong>Graduated:</strong> September 2023</li>
-            <li><strong>GPA:</strong> 17.64/20 (approx. 3.7/4)</li>
-            <li><strong>Thesis:</strong> Developed a <strong>Computer Vision model for Farsi Sign Language Recognition</strong>, including custom dataset creation</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
+        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Education</h2>
+        <div class="mt-4 text-gray-700 space-y-4">
+          <div>
+            <h3 class="font-semibold">Master of Science in Computer Engineering</h3>
+            <p class="text-sm text-gray-600">Sharif University of Technology, Tehran, Iran</p>
+            <p class="text-sm">Concentration: Computer Architecture</p>
+            <p class="text-sm">Expected Graduation: January 2026</p>
+            <p class="text-sm">GPA: 17.61/20 (approx. 3.7/4)</p>
+            <p class="text-sm">Admitted as Exceptional Talent</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Bachelor of Science in Computer Engineering</h3>
+            <p class="text-sm text-gray-600">Babol Noshirvani University, Babol, Iran</p>
+            <p class="text-sm">Graduated: September 2023</p>
+            <p class="text-sm">GPA: 17.64/20 (approx. 3.7/4)</p>
+            <p class="text-sm">Thesis: Farsi Sign Language Recognition (custom dataset)</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Skills -->
-    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
-      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Skills</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-gray-700">
-        <ul class="list-disc list-inside space-y-1">
-          <li><strong>Programming Languages:</strong> Python (NumPy, Pandas), C++, Verilog, MATLAB</li>
-          <li><strong>AI & Machine Learning:</strong> Deep Learning, Computer Vision, CNNs, RNNs, Generative AI, Model Interpretability (Grad-CAM, LIME)</li>
-          <li><strong>Frameworks & Libraries:</strong> TensorFlow, PyTorch, Keras, OpenCV</li>
-        </ul>
-        <ul class="list-disc list-inside space-y-1">
-          <li><strong>Hardware & Embedded Systems:</strong> FPGA, VHDL, SystemVerilog, ASIC Design</li>
-          <li><strong>Tools & Platforms:</strong> Git, Linux, Docker, LaTeX</li>
-          <li><strong>Soft Skills:</strong> Problem-Solving, Interdisciplinary Collaboration, Analytical Thinking, Project Management, Technical Communication</li>
-        </ul>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
+        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Skills</h2>
+        <div class="mt-4 text-gray-700 space-y-2">
+          <p><strong>Programming Languages:</strong> Python (NumPy, Pandas), C++, Verilog, MATLAB</p>
+          <p><strong>AI & ML:</strong> Deep Learning, Computer Vision, CNNs, RNNs, Generative AI, Grad-CAM, LIME</p>
+          <p><strong>Frameworks:</strong> TensorFlow, PyTorch, Keras, OpenCV</p>
+          <p><strong>Hardware:</strong> FPGA, VHDL, SystemVerilog, ASIC Design</p>
+          <p><strong>Tools:</strong> Git, Linux, Docker, LaTeX</p>
+          <p><strong>Soft Skills:</strong> Problem-Solving, Collaboration, Analytical Thinking, Project Management</p>
+        </div>
       </div>
-    </section>
+    </div>
 
     <!-- Research Experience -->
-    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
-      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Research Experience</h2>
-      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
-        <li>
-          <strong>Master’s Thesis Project: Virtual Sensor Design for Electric Vehicles</strong><br />
-          <strong>Supervisor:</strong> Dr. Alireza Ejlali &nbsp; <strong>Duration:</strong> Sep 2023 – Present
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li>Designed a <strong>virtual sensor</strong> to estimate battery temperature in electric vehicles, enhancing safety and reducing costs.</li>
-            <li>Leveraged a <strong>GRU</strong>-based RNN model to improve accuracy and computational efficiency over <strong>LSTMs</strong>.</li>
-            <li>Developed a <strong>fault-tolerant</strong> solution to increase overall system reliability.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Bachelor’s Thesis Project: Farsi Sign Language Recognition using Computer Vision</strong><br />
-          <strong>Duration:</strong> 2022 – 2023
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li>Collected and built a <strong>custom dataset</strong> for Farsi Sign Language to address the lack of existing resources.</li>
-            <li>Developed a <strong>deep learning model</strong> to accurately identify and classify sign language gestures.</li>
-            <li>Achieved a <strong>high accuracy rate</strong> in gesture recognition with practical applications for the deaf community.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Research Project: Multilingual Sign Language Model</strong><br />
-          <strong>Status:</strong> In Progress (Started Summer 2025)
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li>Designing a <strong>visual language model</strong> to understand and generate multiple sign languages, including American and Arabic Sign Languages.</li>
-            <li>Applying <strong>deep learning</strong> and <strong>computer vision</strong> methods to process and interpret diverse sign language datasets.</li>
-            <li>Developing an <strong>avatar-based real-time generation system</strong> to enhance accessibility for the deaf and hard-of-hearing communities.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Research Project: Oral Disease Classification using Histopathology Images</strong><br />
-          <strong>Status:</strong> In Progress (Data Collection Phase)
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li>Collaborating on a medical research initiative to differentiate <strong>oral lichen planus</strong> from <strong>lichenoid reactions</strong> using histopathology images.</li>
-            <li>Leading the <strong>data acquisition and curation</strong> process to build a high-quality dataset for training and evaluation.</li>
-            <li>Planning the design of <strong>Convolutional Neural Network (CNN)</strong> models for accurate image analysis and classification.</li>
-            <li>Preparing protocols for model interpretability using <strong>Grad-CAM</strong> and <strong>LIME</strong> to ensure clinical relevance and transparency.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Digikala User Review Analysis</strong>
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li>Analyzed and modeled a dataset of over 10,000 user reviews to extract actionable insights for product improvement.</li>
-            <li>Designed and implemented a <strong>rule-based summarization system</strong> to condense reviews into concise, informative summaries.</li>
-            <li>Developed an <strong>LLM-powered agent</strong> capable of automatically rephrasing reviews and generating analytical questions to support decision-making processes.</li>
-          </ul>
-        </li>
-        <li>
-          <strong>Persian Cultural Dataset for LLMs</strong>
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li>Led the end-to-end data collection and web crawling process to construct a <strong>high-quality, multimodal Persian dataset</strong> focused on cultural content.</li>
-            <li>Built a robust framework for <strong>data extraction, cleaning, and preprocessing</strong>, enabling structured and reliable inputs for large language models.</li>
-            <li>Ensured dataset diversity and quality to facilitate advanced NLP applications in Persian cultural contexts.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
+        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Research Experience</h2>
+        <div class="mt-4 text-gray-700 space-y-4">
+          <div>
+            <h3 class="font-semibold">Virtual Sensor Design for EVs</h3>
+            <p class="text-sm text-gray-600">Supervisor: Dr. Alireza Ejlali | Sep 2023 – Present</p>
+            <p>Designed a <strong>virtual sensor</strong> for EV batteries with a <strong>GRU-based RNN</strong> and <strong>fault-tolerant</strong> features.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Farsi Sign Language Recognition</h3>
+            <p class="text-sm text-gray-600">2022 – 2023</p>
+            <p>Built a <strong>custom dataset</strong> and a <strong>deep learning model</strong> for sign language recognition.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Multilingual Sign Language Model</h3>
+            <p class="text-sm text-gray-600">In Progress (Summer 2025)</p>
+            <p>Developing a <strong>visual model</strong> with an <strong>avatar-based system</strong> for accessibility.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Oral Disease Classification</h3>
+            <p class="text-sm text-gray-600">In Progress (Data Collection)</p>
+            <p>Leading <strong>data curation</strong> and planning <strong>CNN models</strong> with interpretability tools.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Digikala Review Analysis</h3>
+            <p>Analyzed 10,000+ reviews with a <strong>rule-based system</strong> and <strong>LLM agent</strong>.</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">Persian Cultural Dataset</h3>
+            <p>Led <strong>multimodal data collection</strong> for NLP applications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Work Experience -->
-    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
-      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Work Experience</h2>
-      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
-        <li>
-          <strong>Software Development Intern</strong>, TAM Iran Khodro Co., Tehran, Iran<br />
-          <strong>Duration:</strong> Jul 2022 – Sep 2022
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li>Developed and implemented an <strong>ASP.NET Core</strong> application for the new vehicle paint booth.</li>
-            <li>Contributed to a <strong>real-time monitoring system</strong> to optimize in-plant processes.</li>
-            <li>Applied software development skills to solve challenges in a <strong>large-scale industrial environment</strong>.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
+        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Work Experience</h2>
+        <div class="mt-4 text-gray-700 space-y-4">
+          <div>
+            <h3 class="font-semibold">Software Development Intern</h3>
+            <p class="text-sm text-gray-600">TAM Iran Khodro Co., Tehran, Iran | Jul 2022 – Sep 2022</p>
+            <p>Developed an <strong>ASP.NET Core</strong> app and a <strong>real-time monitoring system</strong> for industrial use.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Teaching Experience -->
-    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
-      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Teaching Experience</h2>
-      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
-        <li>
-          <strong>Teaching Assistant & Lab Instructor</strong>, Sharif University of Technology, Tehran, Iran
-          <ul class="list-disc list-inside ml-6 space-y-1">
-            <li><strong>Computer Systems & Architecture:</strong> TA for Fault-Tolerant Systems, Operating Systems, and Digital Systems Design.</li>
-            <li><strong>Artificial Intelligence & Computer Science:</strong> Supported courses in Artificial Intelligence, Data Structures & Algorithms, and Formal Languages.</li>
-            <li><strong>Lab Instruction:</strong> Led laboratory sessions for Digital Systems Design Lab and Logic Design Lab.</li>
-            <li><strong>Foundational Courses:</strong> Assisted with Linear Algebra and Technical English.</li>
-          </ul>
-        </li>
-      </ul>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
+        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Teaching Experience</h2>
+        <div class="mt-4 text-gray-700 space-y-4">
+          <div>
+            <h3 class="font-semibold">Teaching Assistant & Lab Instructor</h3>
+            <p class="text-sm text-gray-600">Sharif University of Technology, Tehran, Iran</p>
+            <p>Supported <strong>Computer Systems & Architecture</strong>, <strong>AI & CS</strong>, and led labs for Digital Systems and Logic Design.</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Certifications -->
-    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
-      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Certifications</h2>
-      <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700">
-        <li><strong>Task-Oriented Bootcamp in Artificial Intelligence</strong>, Quera <span class="text-gray-500">Issued Aug 2025</span><br />Credential ID: 1kBpLHns</li>
-        <li><strong>Structuring Machine Learning Projects</strong>, Coursera <span class="text-gray-500">Issued Oct 2024</span><br />Credential ID: NAQC224ZKTXL</li>
-        <li><strong>Deep Learning for Images with PyTorch</strong>, DataCamp <span class="text-gray-500">Issued Aug 2024</span><br />Skills: PyTorch</li>
-        <li><strong>Ensemble Methods in Python</strong>, DataCamp <span class="text-gray-500">Issued Aug 2024</span><br />Skills: Python, Scikit-Learn, XGBoost, CatBoost, mlxtend</li>
-        <li><strong>Image Processing in Python</strong>, DataCamp <span class="text-gray-500">Issued Aug 2024</span></li>
-        <li><strong>Introduction to Deep Learning with PyTorch</strong>, DataCamp <span class="text-gray-500">Issued Aug 2024</span><br />Skills: PyTorch</li>
-        <li><strong>Open Data Hackathon: Service Development Based on Open Data</strong>, IEEE Iran Section <span class="text-gray-500">Issued Dec 2022</span><br />Credential ID: 160657</li>
-        <li><strong>Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</strong>, Coursera <span class="text-gray-500">Issued Sep 2022</span><br />Credential ID: ZXJS6CFNXX3X</li>
-        <li><strong>Neural Networks and Deep Learning</strong>, Coursera <span class="text-gray-500">Issued Aug 2022</span><br />Credential ID: PYEX3TF8PANJ</li>
-        <li><strong>Importing & Cleaning Data with Python</strong>, DataCamp <span class="text-gray-500">Issued Jul 2022</span></li>
-      </ul>
-    </section>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
+        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Certifications</h2>
+        <div class="mt-4 text-gray-700 space-y-2">
+          <p><strong>Task-Oriented AI Bootcamp</strong>, Quera, Aug 2025 | ID: 1kBpLHns</p>
+          <p><strong>Structuring ML Projects</strong>, Coursera, Oct 2024 | ID: NAQC224ZKTXL</p>
+          <p><strong>Deep Learning with PyTorch</strong>, DataCamp, Aug 2024 | Skills: PyTorch</p>
+          <p><strong>Ensemble Methods</strong>, DataCamp, Aug 2024 | Skills: Python, Scikit-Learn</p>
+          <p><strong>Image Processing</strong>, DataCamp, Aug 2024</p>
+          <p><strong>Intro to Deep Learning</strong>, DataCamp, Aug 2024 | Skills: PyTorch</p>
+          <p><strong>Open Data Hackathon</strong>, IEEE Iran, Dec 2022 | ID: 160657</p>
+          <p><strong>Intro to TensorFlow</strong>, Coursera, Sep 2022 | ID: ZXJS6CFNXX3X</p>
+          <p><strong>Neural Networks</strong>, Coursera, Aug 2022 | ID: PYEX3TF8PANJ</p>
+          <p><strong>Data Importing & Cleaning</strong>, DataCamp, Jul 2022</p>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>
