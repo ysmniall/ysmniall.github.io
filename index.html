@@ -7,24 +7,43 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-      color: #ffffff;
-      font-family: 'Inter', sans-serif;
+    :root {
+      --primary-dark: #0a0a0a;
+      --secondary-dark: #1a1a1a;
+      --text-dark: #ffffff;
+      --accent-dark: #647FBC;
+      --title-dark: #AED6CF;
+      --background-light: #AED6CF;
+      --text-light: #333333;
+      --accent-light: #647FBC;
+      --title-light: #333333;
+    }
+    body.dark {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+      color: var(--text-dark);
+    }
+    body.light {
+      background: var(--background-light);
+      color: var(--text-light);
     }
     .hero-bg {
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
     }
     .card {
       transition: all 0.3s ease;
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 1.5rem;
     }
     .card:hover {
       transform: translateY(-5px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0,191,255,0.1);
-      border-color: #00bfff;
+      box-shadow: 0 20px 40px rgba(var(--accent-dark),0.1);
+      border-color: rgba(var(--accent-dark),0.2);
+    }
+    .profile-img {
+      border: 4px solid var(--accent-light);
+      box-shadow: 0 0 15px rgba(var(--accent-light),0.3);
     }
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -36,51 +55,48 @@
     }
     .timeline-item {
       position: relative;
-      padding-left: 30px;
+      padding-left: 2rem;
+      margin-bottom: 1.5rem;
     }
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: 15px;
+      left: 0.75rem;
       top: 0;
-      bottom: -20px;
+      bottom: -1rem;
       width: 2px;
-      background: #00bfff;
+      background: var(--accent-dark);
     }
     .timeline-dot {
       position: absolute;
-      left: 10px;
-      top: 5px;
-      width: 12px;
-      height: 12px;
-      background: #00bfff;
+      left: 0.5rem;
+      top: 0.25rem;
+      width: 10px;
+      height: 10px;
+      background: var(--accent-dark);
       border-radius: 50%;
     }
     @media (max-width: 768px) {
       .hero-text { font-size: 2rem; }
-      .timeline-item { padding-left: 20px; }
+      .timeline-item { padding-left: 1.5rem; }
+      .grid-cols-2 { grid-template-columns: 1fr; }
+      .card { padding: 1rem; }
     }
   </style>
 </head>
-<body class="overflow-x-hidden">
-  <!-- Navigation -->
-  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 py-4">
-    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-white">Yasamin Tavakoli</h1>
-      <ul class="flex space-x-6">
-        <li><a href="#about" class="text-gray-300 hover:text-white transition">About</a></li>
-        <li><a href="#skills" class="text-gray-300 hover:text-white transition">Skills</a></li>
-        <li><a href="#experience" class="text-gray-300 hover:text-white transition">Experience</a></li>
-        <li><a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a></li>
-      </ul>
-    </div>
-  </nav>
+<body class="dark overflow-x-hidden">
+  <!-- Mode Switch -->
+  <div class="fixed top-4 right-4 z-50">
+    <button id="mode-toggle" class="bg-white/10 hover:bg-white/20 p-2 rounded-full text-white transition">
+      <i class="fas fa-moon"></i>
+    </button>
+  </div>
 
   <!-- Hero Section -->
   <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-center px-6 pt-20">
     <div class="max-w-4xl mx-auto">
-      <img src="https://via.placeholder.com/150x150?text=YT" alt="Profile" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white/20">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in-up">Yasamin Tavakoli</h1>
+      <img src="https://via.placeholder.com/150x150?text=YT" alt="Profile" class="w-36 h-36 md:w-48 md:h-48 rounded-full mx-auto mb-8 profile-img fade-in-up">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 fade-in-up">Yasamin Tavakoli</h1>
       <p class="text-xl md:text-2xl text-gray-300 mb-8 fade-in-up delay-200">MS Candidate in Computer Engineering<br>Sharif University of Technology</p>
       <div class="flex justify-center space-x-4 mb-8 fade-in-up delay-400">
         <a href="mailto:ysmntavakoli99@gmail.com" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full transition"><i class="fas fa-envelope mr-2"></i>Email</a>
@@ -93,17 +109,17 @@
   <!-- About Section -->
   <section id="about" class="py-20 px-6 bg-black/50">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">About Me</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white fade-in-up">About Me</h2>
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="fade-in-up delay-200">
-          <p class="text-gray-300 leading-relaxed mb-6">A motivated Computer Engineer specializing in <strong>Computer Architecture</strong> with strong experience in <strong>Artificial Intelligence for Embedded Systems</strong> and <strong>Computer Vision</strong>. I have a particular focus on designing <strong>virtual sensors for EV battery management</strong> to address critical safety and cost challenges. I am seeking opportunities to leverage my AI and hardware skills to develop innovative solutions in the automotive industry.</p>
-          <div class="flex space-x-6">
+          <p class="text-lg md:text-xl text-gray-300 leading-relaxed mb-6">A motivated Computer Engineer specializing in <strong>Computer Architecture</strong> with strong experience in <strong>Artificial Intelligence for Embedded Systems</strong> and <strong>Computer Vision</strong>. I focus on designing <strong>virtual sensors for EV battery management</strong> to address safety and cost challenges, seeking innovative solutions in the automotive industry.</p>
+          <div class="flex space-x-8">
             <div class="text-center">
-              <div class="text-2xl font-bold text-white">3.7</div>
+              <div class="text-2xl md:text-3xl font-bold text-white">3.7</div>
               <div class="text-gray-400">GPA</div>
             </div>
             <div class="text-center">
-              <div class="text-2xl font-bold text-white">6+</div>
+              <div class="text-2xl md:text-3xl font-bold text-white">6+</div>
               <div class="text-gray-400">Projects</div>
             </div>
           </div>
@@ -139,12 +155,12 @@
   <!-- Skills Section -->
   <section id="skills" class="py-20 px-6">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">Skills</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white fade-in-up">Skills</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="card p-6 fade-in-up delay-200">
           <i class="fas fa-brain text-3xl text-blue-400 mb-4"></i>
           <h3 class="text-xl font-bold mb-2">AI & Machine Learning</h3>
-          <p class="text-gray-400">Deep Learning, Computer Vision, CNNs, RNNs, Generative AI, Model Interpretability (Grad-CAM, LIME)</p>
+          <p class="text-gray-400">Deep Learning, Computer Vision, CNNs, RNNs, Generative AI, Grad-CAM, LIME</p>
         </div>
         <div class="card p-6 fade-in-up delay-400">
           <i class="fas fa-microchip text-3xl text-blue-400 mb-4"></i>
@@ -154,7 +170,7 @@
         <div class="card p-6 fade-in-up delay-600">
           <i class="fas fa-tools text-3xl text-blue-400 mb-4"></i>
           <h3 class="text-xl font-bold mb-2">Tools & Frameworks</h3>
-          <p class="text-gray-400">Python, TensorFlow, PyTorch, OpenCV, Git, Docker</p>
+          <p class="text-gray-400">Python, TensorFlow, PyTorch, OpenCV, Git, Docker, LaTeX</p>
         </div>
       </div>
     </div>
@@ -163,60 +179,74 @@
   <!-- Experience Section -->
   <section id="experience" class="py-20 px-6 bg-black/50">
     <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">Experience</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white fade-in-up">Experience</h2>
       <div class="space-y-8">
-        <!-- Research Timeline -->
-        <div class="fade-in-up delay-200">
-          <h3 class="text-2xl font-bold mb-6 text-center">Research & Projects</h3>
+        <!-- Research Accordion -->
+        <details id="research-section" class="fade-in-up delay-200" open>
+          <summary class="text-2xl md:text-3xl font-bold mb-6 cursor-pointer text-white hover:text-blue-400 transition">Research & Projects</summary>
           <div class="space-y-6">
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="card p-4 ml-8">
-                <h4 class="font-bold">Master's Thesis: Virtual Sensor for EVs</h4>
-                <p class="text-sm text-gray-400">Sep 2023 – Present</p>
-                <p class="text-gray-300">Designed GRU-based RNN for battery temperature estimation, fault-tolerant system.</p>
+                <h4 class="font-bold text-lg md:text-xl">Master’s Thesis Project: Virtual Sensor Design for Electric Vehicles</h4>
+                <p class="text-sm text-gray-400">Supervisor: Dr. Alireza Ejlali | Sep 2023 – Present</p>
+                <p class="text-gray-300 text-base">Designed a <strong>virtual sensor</strong> to estimate battery temperature in electric vehicles, enhancing safety and reducing costs. Leveraged a <strong>GRU</strong>-based RNN model to improve accuracy and computational efficiency over <strong>LSTMs</strong>. Developed a <strong>fault-tolerant</strong> solution to increase overall system reliability.</p>
               </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="card p-4 ml-8">
-                <h4 class="font-bold">Farsi Sign Language Recognition</h4>
+                <h4 class="font-bold text-lg md:text-xl">Bachelor’s Thesis Project: Farsi Sign Language Recognition using Computer Vision</h4>
                 <p class="text-sm text-gray-400">2022 – 2023</p>
-                <p class="text-gray-300">Custom dataset & deep learning model for gesture recognition.</p>
+                <p class="text-gray-300 text-base">Collected and built a <strong>custom dataset</strong> for Farsi Sign Language to address the lack of existing resources. Developed a <strong>deep learning model</strong> to accurately identify and classify sign language gestures. Achieved a <strong>high accuracy rate</strong> in gesture recognition with practical applications for the deaf community.</p>
               </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="card p-4 ml-8">
-                <h4 class="font-bold">Multilingual Sign Language Model</h4>
-                <p class="text-sm text-gray-400">Summer 2025 – Present</p>
-                <p class="text-gray-300">Visual language model with avatar-based real-time generation.</p>
+                <h4 class="font-bold text-lg md:text-xl">Research Project: Multilingual Sign Language Model</h4>
+                <p class="text-sm text-gray-400">In Progress (Started Summer 2025)</p>
+                <p class="text-gray-300 text-base">Designing a <strong>visual language model</strong> to understand and generate multiple sign languages, including American and Arabic Sign Languages. Applying <strong>deep learning</strong> and <strong>computer vision</strong> methods to process and interpret diverse sign language datasets. Developing an <strong>avatar-based real-time generation system</strong> to enhance accessibility for the deaf and hard-of-hearing communities.</p>
               </div>
             </div>
             <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="card p-4 ml-8">
-                <h4 class="font-bold">Oral Disease Classification</h4>
-                <p class="text-sm text-gray-400">In Progress</p>
-                <p class="text-gray-300">CNN models with Grad-CAM/LIME for histopathology images.</p>
+                <h4 class="font-bold text-lg md:text-xl">Research Project: Oral Disease Classification using Histopathology Images</h4>
+                <p class="text-sm text-gray-400">In Progress (Data Collection Phase)</p>
+                <p class="text-gray-300 text-base">Collaborating on a medical research initiative to differentiate <strong>oral lichen planus</strong> from <strong>lichenoid reactions</strong> using histopathology images. Leading the <strong>data acquisition and curation</strong> process to build a high-quality dataset for training and evaluation. Planning the design of <strong>Convolutional Neural Network (CNN)</strong> models for accurate image analysis and classification. Preparing protocols for model interpretability using <strong>Grad-CAM</strong> and <strong>LIME</strong> to ensure clinical relevance and transparency.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="card p-4 ml-8">
+                <h4 class="font-bold text-lg md:text-xl">Digikala User Review Analysis</h4>
+                <p class="text-gray-300 text-base">Analyzed and modeled a dataset of over 10,000 user reviews to extract actionable insights for product improvement. Designed and implemented a <strong>rule-based summarization system</strong> to condense reviews into concise, informative summaries. Developed an <strong>LLM-powered agent</strong> capable of automatically rephrasing reviews and generating analytical questions to support decision-making processes.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="card p-4 ml-8">
+                <h4 class="font-bold text-lg md:text-xl">Persian Cultural Dataset for LLMs</h4>
+                <p class="text-gray-300 text-base">Led the end-to-end data collection and web crawling process to construct a <strong>high-quality, multimodal Persian dataset</strong> focused on cultural content. Built a robust framework for <strong>data extraction, cleaning, and preprocessing</strong>, enabling structured and reliable inputs for large language models. Ensured dataset diversity and quality to facilitate advanced NLP applications in Persian cultural contexts.</p>
               </div>
             </div>
           </div>
-        </div>
+        </details>
 
         <!-- Work & Teaching -->
         <div class="grid md:grid-cols-2 gap-6 fade-in-up delay-400">
           <div class="card p-6">
-            <h3 class="text-xl font-bold mb-4">Work Experience</h3>
-            <h4 class="font-semibold">Software Development Intern</h4>
-            <p class="text-sm text-gray-400">TAM Iran Khodro Co. | Jul 2022 – Sep 2022</p>
-            <p class="text-gray-300">ASP.NET Core app for vehicle paint booth & real-time monitoring.</p>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Work Experience</h3>
+            <h4 class="font-semibold text-lg md:text-xl">Software Development Intern</h4>
+            <p class="text-sm text-gray-400">TAM Iran Khodro Co., Tehran, Iran | Jul 2022 – Sep 2022</p>
+            <p class="text-gray-300 text-base">Developed and implemented an <strong>ASP.NET Core</strong> application for the new vehicle paint booth. Contributed to a <strong>real-time monitoring system</strong> to optimize in-plant processes. Applied software development skills to solve challenges in a <strong>large-scale industrial environment</strong>.</p>
           </div>
           <div class="card p-6">
-            <h3 class="text-xl font-bold mb-4">Teaching Experience</h3>
-            <h4 class="font-semibold">Teaching Assistant & Lab Instructor</h4>
-            <p class="text-sm text-gray-400">Sharif University of Technology</p>
-            <p class="text-gray-300">Courses in AI, Computer Architecture, Data Structures; led labs.</p>
+            <h3 class="text-xl md:text-2xl font-bold mb-4">Teaching Experience</h3>
+            <h4 class="font-semibold text-lg md:text-xl">Teaching Assistant & Lab Instructor</h4>
+            <p class="text-sm text-gray-400">Sharif University of Technology, Tehran, Iran</p>
+            <p class="text-gray-300 text-base"><strong>Computer Systems & Architecture:</strong> TA for Fault-Tolerant Systems, Operating Systems, and Digital Systems Design. <strong>Artificial Intelligence & Computer Science:</strong> Supported courses in Artificial Intelligence, Data Structures & Algorithms, and Formal Languages. <strong>Lab Instruction:</strong> Led laboratory sessions for Digital Systems Design Lab and Logic Design Lab. <strong>Foundational Courses:</strong> Assisted with Linear Algebra and Technical English.</p>
           </div>
         </div>
       </div>
@@ -224,27 +254,50 @@
   </section>
 
   <!-- Certifications Section -->
-  <section class="py-20 px-6">
+  <section id="certifications" class="py-20 px-6">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">Certifications</h2>
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-white fade-in-up">Certifications</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="card p-6 fade-in-up delay-200">
-          <h4 class="font-bold">Task-Oriented AI Bootcamp, Quera</h4>
-          <p class="text-sm text-gray-400">Aug 2025 | ID: 1kBpLHns</p>
+          <h4 class="font-bold text-lg md:text-xl">Task-Oriented Bootcamp in Artificial Intelligence</h4>
+          <p class="text-sm text-gray-400">Quera | Issued Aug 2025<br>Credential ID: 1kBpLHns</p>
         </div>
         <div class="card p-6 fade-in-up delay-400">
-          <h4 class="font-bold">Structuring ML Projects, Coursera</h4>
-          <p class="text-sm text-gray-400">Oct 2024 | ID: NAQC224ZKTXL</p>
+          <h4 class="font-bold text-lg md:text-xl">Structuring Machine Learning Projects</h4>
+          <p class="text-sm text-gray-400">Coursera | Issued Oct 2024<br>Credential ID: NAQC224ZKTXL</p>
         </div>
         <div class="card p-6 fade-in-up delay-600">
-          <h4 class="font-bold">Deep Learning with PyTorch, DataCamp</h4>
-          <p class="text-sm text-gray-400">Aug 2024 | Skills: PyTorch</p>
+          <h4 class="font-bold text-lg md:text-xl">Deep Learning for Images with PyTorch</h4>
+          <p class="text-sm text-gray-400">DataCamp | Issued Aug 2024<br>Skills: PyTorch</p>
         </div>
         <div class="card p-6 fade-in-up delay-800">
-          <h4 class="font-bold">Intro to TensorFlow, Coursera</h4>
-          <p class="text-sm text-gray-400">Sep 2022 | ID: ZXJS6CFNXX3X</p>
+          <h4 class="font-bold text-lg md:text-xl">Ensemble Methods in Python</h4>
+          <p class="text-sm text-gray-400">DataCamp | Issued Aug 2024<br>Skills: Python, Scikit-Learn, XGBoost, CatBoost, mlxtend</p>
         </div>
-        <!-- Add more as needed -->
+        <div class="card p-6 fade-in-up delay-1000">
+          <h4 class="font-bold text-lg md:text-xl">Image Processing in Python</h4>
+          <p class="text-sm text-gray-400">DataCamp | Issued Aug 2024</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-1200">
+          <h4 class="font-bold text-lg md:text-xl">Introduction to Deep Learning with PyTorch</h4>
+          <p class="text-sm text-gray-400">DataCamp | Issued Aug 2024<br>Skills: PyTorch</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-1400">
+          <h4 class="font-bold text-lg md:text-xl">Open Data Hackathon: Service Development Based on Open Data</h4>
+          <p class="text-sm text-gray-400">IEEE Iran Section | Issued Dec 2022<br>Credential ID: 160657</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-1600">
+          <h4 class="font-bold text-lg md:text-xl">Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</h4>
+          <p class="text-sm text-gray-400">Coursera | Issued Sep 2022<br>Credential ID: ZXJS6CFNXX3X</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-1800">
+          <h4 class="font-bold text-lg md:text-xl">Neural Networks and Deep Learning</h4>
+          <p class="text-sm text-gray-400">Coursera | Issued Aug 2022<br>Credential ID: PYEX3TF8PANJ</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-2000">
+          <h4 class="font-bold text-lg md:text-xl">Importing & Cleaning Data with Python</h4>
+          <p class="text-sm text-gray-400">DataCamp | Issued Jul 2022</p>
+        </div>
       </div>
     </div>
   </section>
@@ -252,8 +305,8 @@
   <!-- Contact Section -->
   <section id="contact" class="py-20 px-6 bg-black/50">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-8 text-white fade-in-up">Get In Touch</h2>
-      <p class="text-gray-300 mb-8 fade-in-up delay-200">+98 912 092 0000 | ysmntavakoli99@gmail.com</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-white fade-in-up">Get In Touch</h2>
+      <p class="text-lg md:text-xl text-gray-300 mb-8 fade-in-up delay-200">+98 912 092 0000 | ysmntavakoli99@gmail.com</p>
       <form class="max-w-md mx-auto space-y-4 fade-in-up delay-400" onsubmit="alert('Message sent!'); return false;">
         <input type="text" placeholder="Your Name" class="w-full p-3 bg-white/10 rounded-lg text-white border border-white/20 focus:border-blue-400">
         <input type="email" placeholder="Your Email" class="w-full p-3 bg-white/10 rounded-lg text-white border border-white/20 focus:border-blue-400">
@@ -269,7 +322,33 @@
   </footer>
 
   <script>
-    // Scroll-triggered animations
+    // Light/Dark Mode Toggle
+    const toggleButton = document.getElementById('mode-toggle');
+    const body = document.body;
+    toggleButton.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+      toggleButton.innerHTML = body.classList.contains('dark') ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+      localStorage.setItem('mode', body.classList.contains('dark') ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('mode') === 'light') {
+      body.classList.remove('dark');
+      body.classList.add('light');
+      toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    // Intersection Observer for Accordion
+    const researchObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.getElementById('research-section').open = true;
+        } else {
+          document.getElementById('research-section').open = false;
+        }
+      });
+    }, { threshold: 0.5 });
+    researchObserver.observe(document.getElementById('research-section'));
+
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -282,7 +361,6 @@
 
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 
-    // Smooth scroll for nav links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
