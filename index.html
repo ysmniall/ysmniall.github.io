@@ -13,7 +13,7 @@
             --text-dark: #ffffff;
             --accent-dark: #647FBC;
             --title-dark: #647FBC;
-            --background-light: #9ab2d9; 
+            --background-light: #9ab2d9;
             --text-light: #1F2937;
             --accent-light: #25406b;
             --title-light: #203575;
@@ -23,7 +23,7 @@
             color: var(--text-dark);
         }
         body.light {
-            background: var(--background-light); /* #9ab2d9 */
+            background: var(--background-light);
             color: var(--text-light);
         }
         body { font-family: 'Poppins', sans-serif; }
@@ -32,7 +32,7 @@
             background-size: cover;
         }
         .hero-bg.light {
-            background: linear-gradient(rgba(154, 178, 217, 0.8), rgba(154, 178, 217, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="#25406b" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>'); /* Updated gradient to #9ab2d9 */
+            background: linear-gradient(rgba(154, 178, 217, 0.8), rgba(154, 178, 217, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="#25406b" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
             background-size: cover;
         }
         .card {
@@ -48,7 +48,7 @@
             box-shadow: 0 10px 20px rgba(37, 64, 107, 0.2);
         }
         .card:hover {
-            box-shadow: 0 25px 50px rgba(100, 127, 188, 0.3); /* No scaling */
+            box-shadow: 0 25px 50px rgba(100, 127, 188, 0.3);
         }
         body.light .card:hover {
             box-shadow: 0 25px 50px rgba(37, 64, 107, 0.4);
@@ -95,7 +95,7 @@
             color: var(--title-dark);
         }
         body.light .section-title {
-            color: var(--title-light); /* #203575 */
+            color: var(--title-light);
         }
         .section-text {
             color: var(--text-dark);
@@ -108,6 +108,12 @@
         }
         body.light .contact-button {
             background: var(--accent-light);
+        }
+        input.section-text, textarea.section-text {
+            color: #ffffff !important;
+        }
+        input.section-text::placeholder, textarea.section-text::placeholder {
+            color: #d1d5db !important;
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
@@ -415,8 +421,8 @@
     <!-- Contact -->
     <section id="contact" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 section-title fade-in-up text-justify">Get In Touch</h2>
             <p class="text-lg md:text-xl mb-8 section-text fade-in-up delay-200 text-justify">+98 912 092 0893 | ysmntavakoli99@gmail.com</p>
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 section-title fade-in-up text-justify">Get In Touch</h2>
             <form class="max-w-md mx-auto space-y-4 fade-in-up delay-400" onsubmit="alert('Message sent!'); return false;">
                 <input type="text" placeholder="Your Name" class="w-full p-3 bg-white/10 rounded-lg text-white border border-white/20 focus:border-blue-400 focus:outline-none section-text">
                 <input type="email" placeholder="Your Email" class="w-full p-3 bg-white/10 rounded-lg text-white border border-white/20 focus:border-blue-400 focus:outline-none section-text">
