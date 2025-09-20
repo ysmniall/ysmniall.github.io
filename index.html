@@ -5,35 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yasamin Tavakoli - Personal Website</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      min-height: 100vh;
+    }
+    .card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .fade-in {
+      animation: fadeIn 1s ease-in-out;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
-  <div class="max-w-4xl mx-auto p-6 bg-white shadow-md">
+<body class="font-sans text-gray-800">
+  <div class="max-w-4xl mx-auto p-6">
     <!-- Header -->
-    <header class="text-center py-6 border-b-2 border-gray-300">
-      <h1 class="text-3xl font-bold text-gray-800">Yasamin Tavakoli</h1>
-      <p class="text-lg text-gray-600">MS Candidate in Computer Engineering, Sharif University of Technology, Tehran, Iran</p>
-      <div class="mt-2 space-x-4">
-        <a href="tel:+989120920000" class="text-blue-600 hover:underline">+98 912 092 0000</a>
-        <a href="mailto:ysmntavakoli99@gmail.com" class="text-blue-600 hover:underline">ysmntavakoli99@gmail.com</a>
-        <a href="https://www.linkedin.com/in/yasamin-tavakoli-800943236/" class="text-blue-600 hover:underline">LinkedIn</a>
+    <header class="text-center py-6 mb-8 bg-white rounded-lg shadow-md card fade-in">
+      <h1 class="text-4xl font-bold text-blue-900">Yasamin Tavakoli</h1>
+      <p class="text-lg text-gray-600 mt-2">MS Candidate in Computer Engineering, Sharif University of Technology, Tehran, Iran</p>
+      <div class="mt-4 space-x-4">
+        <a href="tel:+989120920000" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">+98 912 092 0000</a>
+        <a href="mailto:ysmntavakoli99@gmail.com" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">ysmntavakoli99@gmail.com</a>
+        <a href="https://www.linkedin.com/in/yasamin-tavakoli-800943236/" class="text-blue-600 hover:text-blue-800 font-medium transition-colors">LinkedIn</a>
+        <a href="#" class="text-blue-600 hover:text-blue-800 font-medium transition-colors" download>Download Resume (PDF)</a>
       </div>
     </header>
 
     <!-- Professional Summary -->
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-1">Professional Summary</h2>
-      <p class="mt-2 text-gray-600">
+    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
+      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Professional Summary</h2>
+      <p class="mt-4 text-gray-700">
         A motivated Computer Engineer specializing in <strong>Computer Architecture</strong> with strong experience in <strong>Artificial Intelligence for Embedded Systems</strong> and <strong>Computer Vision</strong>. I have a particular focus on designing <strong>virtual sensors for EV battery management</strong> to address critical safety and cost challenges. I am seeking opportunities to leverage my AI and hardware skills to develop innovative solutions in the automotive industry.
       </p>
     </section>
 
     <!-- Education -->
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-1">Education</h2>
-      <ul class="list-disc list-inside mt-2 space-y-4">
+    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
+      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Education</h2>
+      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
         <li>
           <strong>Master of Science in Computer Engineering</strong>, Sharif University of Technology, Tehran, Iran
-          <ul class="list-disc list-inside ml-6 space-y-1 text-gray-600">
+          <ul class="list-disc list-inside ml-6 space-y-1">
             <li><strong>Concentration:</strong> Computer Architecture</li>
             <li><strong>Expected Graduation:</strong> January 2026</li>
             <li><strong>GPA:</strong> 17.61/20 (approx. 3.7/4)</li>
@@ -42,7 +63,7 @@
         </li>
         <li>
           <strong>Bachelor of Science in Computer Engineering</strong>, Babol Noshirvani University of Technology, Babol, Iran
-          <ul class="list-disc list-inside ml-6 space-y-1 text-gray-600">
+          <ul class="list-disc list-inside ml-6 space-y-1">
             <li><strong>Graduated:</strong> September 2023</li>
             <li><strong>GPA:</strong> 17.64/20 (approx. 3.7/4)</li>
             <li><strong>Thesis:</strong> Developed a <strong>Computer Vision model for Farsi Sign Language Recognition</strong>, including custom dataset creation</li>
@@ -52,9 +73,9 @@
     </section>
 
     <!-- Skills -->
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-1">Skills</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 text-gray-600">
+    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
+      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Skills</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 text-gray-700">
         <ul class="list-disc list-inside space-y-1">
           <li><strong>Programming Languages:</strong> Python (NumPy, Pandas), C++, Verilog, MATLAB</li>
           <li><strong>AI & Machine Learning:</strong> Deep Learning, Computer Vision, CNNs, RNNs, Generative AI, Model Interpretability (Grad-CAM, LIME)</li>
@@ -69,9 +90,9 @@
     </section>
 
     <!-- Research Experience -->
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-1">Research Experience</h2>
-      <ul class="list-disc list-inside mt-2 space-y-4 text-gray-600">
+    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
+      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Research Experience</h2>
+      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
         <li>
           <strong>Master’s Thesis Project: Virtual Sensor Design for Electric Vehicles</strong><br />
           <strong>Supervisor:</strong> Dr. Alireza Ejlali &nbsp; <strong>Duration:</strong> Sep 2023 – Present
@@ -129,9 +150,9 @@
     </section>
 
     <!-- Work Experience -->
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-1">Work Experience</h2>
-      <ul class="list-disc list-inside mt-2 space-y-4 text-gray-600">
+    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
+      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Work Experience</h2>
+      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
         <li>
           <strong>Software Development Intern</strong>, TAM Iran Khodro Co., Tehran, Iran<br />
           <strong>Duration:</strong> Jul 2022 – Sep 2022
@@ -145,9 +166,9 @@
     </section>
 
     <!-- Teaching Experience -->
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-1">Teaching Experience</h2>
-      <ul class="list-disc list-inside mt-2 space-y-4 text-gray-600">
+    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
+      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Teaching Experience</h2>
+      <ul class="list-disc list-inside mt-4 space-y-4 text-gray-700">
         <li>
           <strong>Teaching Assistant & Lab Instructor</strong>, Sharif University of Technology, Tehran, Iran
           <ul class="list-disc list-inside ml-6 space-y-1">
@@ -161,9 +182,9 @@
     </section>
 
     <!-- Certifications -->
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold text-gray-700 border-b-2 border-gray-300 pb-1">Certifications</h2>
-      <ul class="list-disc list-inside mt-2 space-y-2 text-gray-600">
+    <section class="mb-8 bg-white p-6 rounded-lg shadow-md card fade-in">
+      <h2 class="text-2xl font-bold text-blue-900 border-b-2 border-blue-200 pb-2">Certifications</h2>
+      <ul class="list-disc list-inside mt-4 space-y-2 text-gray-700">
         <li><strong>Task-Oriented Bootcamp in Artificial Intelligence</strong>, Quera <span class="text-gray-500">Issued Aug 2025</span><br />Credential ID: 1kBpLHns</li>
         <li><strong>Structuring Machine Learning Projects</strong>, Coursera <span class="text-gray-500">Issued Oct 2024</span><br />Credential ID: NAQC224ZKTXL</li>
         <li><strong>Deep Learning for Images with PyTorch</strong>, DataCamp <span class="text-gray-500">Issued Aug 2024</span><br />Skills: PyTorch</li>
