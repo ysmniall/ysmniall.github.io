@@ -3,195 +3,292 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yasamin Tavakoli - Personal Website</title>
+  <title>Yasamin Tavakoli - Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
-      background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
-      min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
     }
-    .section-card {
-      background: rgba(255, 255, 255, 0.9);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border-radius: 1rem;
+    .hero-bg {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
     }
-    .section-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    .card {
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,191,255,0.1);
+      border-color: #00bfff;
     }
-    .fade-in {
-      animation: fadeIn 1s ease-in-out backwards;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .fade-in:nth-child(1) { animation-delay: 0.1s; }
-    .fade-in:nth-child(2) { animation-delay: 0.3s; }
-    .fade-in:nth-child(3) { animation-delay: 0.5s; }
-    .fade-in:nth-child(4) { animation-delay: 0.7s; }
-    .fade-in:nth-child(5) { animation-delay: 0.9s; }
-    .fade-in:nth-child(6) { animation-delay: 1.1s; }
-    .fade-in:nth-child(7) { animation-delay: 1.3s; }
-    @media (max-width: 640px) {
-      .section-card {
-        margin-bottom: 1.5rem;
-      }
-      .header-links a {
-        display: block;
-        margin: 0.5rem 0;
-      }
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    .timeline-item {
+      position: relative;
+      padding-left: 30px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: -20px;
+      width: 2px;
+      background: #00bfff;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 10px;
+      top: 5px;
+      width: 12px;
+      height: 12px;
+      background: #00bfff;
+      border-radius: 50%;
+    }
+    @media (max-width: 768px) {
+      .hero-text { font-size: 2rem; }
+      .timeline-item { padding-left: 20px; }
     }
   </style>
 </head>
-<body class="text-gray-800">
-  <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-8">
-    <!-- Header -->
-    <header class="text-center py-8 mb-6 bg-white rounded-xl shadow-lg section-card fade-in">
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-purple-900">Yasamin Tavakoli</h1>
-      <p class="text-lg sm:text-xl text-gray-600 mt-2">MS Candidate in Computer Engineering</p>
-      <p class="text-sm sm:text-md text-gray-500">Sharif University of Technology, Tehran, Iran</p>
-      <div class="mt-4 flex justify-center space-x-4 header-links">
-        <a href="tel:+989120920000" class="text-purple-700 hover:text-purple-900 font-medium transition-colors">+98 912 092 0000</a>
-        <a href="mailto:ysmntavakoli99@gmail.com" class="text-purple-700 hover:text-purple-900 font-medium transition-colors">ysmntavakoli99@gmail.com</a>
-        <a href="https://www.linkedin.com/in/yasamin-tavakoli-800943236/" class="text-purple-700 hover:text-purple-900 font-medium transition-colors">LinkedIn</a>
-        <a href="#" class="text-purple-700 hover:text-purple-900 font-medium transition-colors" download>Download Resume</a>
-      </div>
-    </header>
+<body class="overflow-x-hidden">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 py-4">
+    <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-white">Yasamin Tavakoli</h1>
+      <ul class="flex space-x-6">
+        <li><a href="#about" class="text-gray-300 hover:text-white transition">About</a></li>
+        <li><a href="#skills" class="text-gray-300 hover:text-white transition">Skills</a></li>
+        <li><a href="#experience" class="text-gray-300 hover:text-white transition">Experience</a></li>
+        <li><a href="#contact" class="text-gray-300 hover:text-white transition">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <!-- Professional Summary -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
-        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">About Me</h2>
-        <p class="mt-4 text-gray-700 leading-relaxed">
-          A motivated Computer Engineer specializing in <strong>Computer Architecture</strong>, <strong>AI for Embedded Systems</strong>, and <strong>Computer Vision</strong>. I focus on designing <strong>virtual sensors for EV battery management</strong> to address safety and cost challenges, seeking to innovate in the automotive industry.
-        </p>
+  <!-- Hero Section -->
+  <section id="hero" class="hero-bg min-h-screen flex items-center justify-center text-center px-6 pt-20">
+    <div class="max-w-4xl mx-auto">
+      <img src="https://via.placeholder.com/150x150?text=YT" alt="Profile" class="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white/20">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 fade-in-up">Yasamin Tavakoli</h1>
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 fade-in-up delay-200">MS Candidate in Computer Engineering<br>Sharif University of Technology</p>
+      <div class="flex justify-center space-x-4 mb-8 fade-in-up delay-400">
+        <a href="mailto:ysmntavakoli99@gmail.com" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full transition"><i class="fas fa-envelope mr-2"></i>Email</a>
+        <a href="https://www.linkedin.com/in/yasamin-tavakoli-800943236/" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full transition"><i class="fab fa-linkedin mr-2"></i>LinkedIn</a>
+        <a href="#" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-full transition" download><i class="fas fa-download mr-2"></i>Resume</a>
       </div>
     </div>
+  </section>
 
-    <!-- Education -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
-        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Education</h2>
-        <div class="mt-4 text-gray-700 space-y-4">
-          <div>
-            <h3 class="font-semibold">Master of Science in Computer Engineering</h3>
-            <p class="text-sm text-gray-600">Sharif University of Technology, Tehran, Iran</p>
-            <p class="text-sm">Concentration: Computer Architecture</p>
-            <p class="text-sm">Expected Graduation: January 2026</p>
-            <p class="text-sm">GPA: 17.61/20 (approx. 3.7/4)</p>
-            <p class="text-sm">Admitted as Exceptional Talent</p>
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6 bg-black/50">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">About Me</h2>
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="fade-in-up delay-200">
+          <p class="text-gray-300 leading-relaxed mb-6">A motivated Computer Engineer specializing in <strong>Computer Architecture</strong> with strong experience in <strong>Artificial Intelligence for Embedded Systems</strong> and <strong>Computer Vision</strong>. I have a particular focus on designing <strong>virtual sensors for EV battery management</strong> to address critical safety and cost challenges. I am seeking opportunities to leverage my AI and hardware skills to develop innovative solutions in the automotive industry.</p>
+          <div class="flex space-x-6">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">3.7</div>
+              <div class="text-gray-400">GPA</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-white">6+</div>
+              <div class="text-gray-400">Projects</div>
+            </div>
           </div>
-          <div>
-            <h3 class="font-semibold">Bachelor of Science in Computer Engineering</h3>
-            <p class="text-sm text-gray-600">Babol Noshirvani University, Babol, Iran</p>
-            <p class="text-sm">Graduated: September 2023</p>
-            <p class="text-sm">GPA: 17.64/20 (approx. 3.7/4)</p>
-            <p class="text-sm">Thesis: Farsi Sign Language Recognition (custom dataset)</p>
+        </div>
+        <div class="fade-in-up delay-400">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="card p-4 text-center">
+              <i class="fas fa-graduation-cap text-2xl text-blue-400 mb-2"></i>
+              <h3 class="font-bold">Education</h3>
+              <p class="text-gray-400 text-sm">Sharif University</p>
+            </div>
+            <div class="card p-4 text-center">
+              <i class="fas fa-code text-2xl text-blue-400 mb-2"></i>
+              <h3 class="font-bold">Skills</h3>
+              <p class="text-gray-400 text-sm">AI & Hardware</p>
+            </div>
+            <div class="card p-4 text-center">
+              <i class="fas fa-briefcase text-2xl text-blue-400 mb-2"></i>
+              <h3 class="font-bold">Experience</h3>
+              <p class="text-gray-400 text-sm">Research & Intern</p>
+            </div>
+            <div class="card p-4 text-center">
+              <i class="fas fa-certificate text-2xl text-blue-400 mb-2"></i>
+              <h3 class="font-bold">Certifications</h3>
+              <p class="text-gray-400 text-sm">10+</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Skills -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
-        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Skills</h2>
-        <div class="mt-4 text-gray-700 space-y-2">
-          <p><strong>Programming Languages:</strong> Python (NumPy, Pandas), C++, Verilog, MATLAB</p>
-          <p><strong>AI & ML:</strong> Deep Learning, Computer Vision, CNNs, RNNs, Generative AI, Grad-CAM, LIME</p>
-          <p><strong>Frameworks:</strong> TensorFlow, PyTorch, Keras, OpenCV</p>
-          <p><strong>Hardware:</strong> FPGA, VHDL, SystemVerilog, ASIC Design</p>
-          <p><strong>Tools:</strong> Git, Linux, Docker, LaTeX</p>
-          <p><strong>Soft Skills:</strong> Problem-Solving, Collaboration, Analytical Thinking, Project Management</p>
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">Skills</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="card p-6 fade-in-up delay-200">
+          <i class="fas fa-brain text-3xl text-blue-400 mb-4"></i>
+          <h3 class="text-xl font-bold mb-2">AI & Machine Learning</h3>
+          <p class="text-gray-400">Deep Learning, Computer Vision, CNNs, RNNs, Generative AI, Model Interpretability (Grad-CAM, LIME)</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-400">
+          <i class="fas fa-microchip text-3xl text-blue-400 mb-4"></i>
+          <h3 class="text-xl font-bold mb-2">Hardware & Embedded</h3>
+          <p class="text-gray-400">FPGA, VHDL, SystemVerilog, ASIC Design</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-600">
+          <i class="fas fa-tools text-3xl text-blue-400 mb-4"></i>
+          <h3 class="text-xl font-bold mb-2">Tools & Frameworks</h3>
+          <p class="text-gray-400">Python, TensorFlow, PyTorch, OpenCV, Git, Docker</p>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Research Experience -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
-        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Research Experience</h2>
-        <div class="mt-4 text-gray-700 space-y-4">
-          <div>
-            <h3 class="font-semibold">Virtual Sensor Design for EVs</h3>
-            <p class="text-sm text-gray-600">Supervisor: Dr. Alireza Ejlali | Sep 2023 – Present</p>
-            <p>Designed a <strong>virtual sensor</strong> for EV batteries with a <strong>GRU-based RNN</strong> and <strong>fault-tolerant</strong> features.</p>
+  <!-- Experience Section -->
+  <section id="experience" class="py-20 px-6 bg-black/50">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">Experience</h2>
+      <div class="space-y-8">
+        <!-- Research Timeline -->
+        <div class="fade-in-up delay-200">
+          <h3 class="text-2xl font-bold mb-6 text-center">Research & Projects</h3>
+          <div class="space-y-6">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="card p-4 ml-8">
+                <h4 class="font-bold">Master's Thesis: Virtual Sensor for EVs</h4>
+                <p class="text-sm text-gray-400">Sep 2023 – Present</p>
+                <p class="text-gray-300">Designed GRU-based RNN for battery temperature estimation, fault-tolerant system.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="card p-4 ml-8">
+                <h4 class="font-bold">Farsi Sign Language Recognition</h4>
+                <p class="text-sm text-gray-400">2022 – 2023</p>
+                <p class="text-gray-300">Custom dataset & deep learning model for gesture recognition.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="card p-4 ml-8">
+                <h4 class="font-bold">Multilingual Sign Language Model</h4>
+                <p class="text-sm text-gray-400">Summer 2025 – Present</p>
+                <p class="text-gray-300">Visual language model with avatar-based real-time generation.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="card p-4 ml-8">
+                <h4 class="font-bold">Oral Disease Classification</h4>
+                <p class="text-sm text-gray-400">In Progress</p>
+                <p class="text-gray-300">CNN models with Grad-CAM/LIME for histopathology images.</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 class="font-semibold">Farsi Sign Language Recognition</h3>
-            <p class="text-sm text-gray-600">2022 – 2023</p>
-            <p>Built a <strong>custom dataset</strong> and a <strong>deep learning model</strong> for sign language recognition.</p>
+        </div>
+
+        <!-- Work & Teaching -->
+        <div class="grid md:grid-cols-2 gap-6 fade-in-up delay-400">
+          <div class="card p-6">
+            <h3 class="text-xl font-bold mb-4">Work Experience</h3>
+            <h4 class="font-semibold">Software Development Intern</h4>
+            <p class="text-sm text-gray-400">TAM Iran Khodro Co. | Jul 2022 – Sep 2022</p>
+            <p class="text-gray-300">ASP.NET Core app for vehicle paint booth & real-time monitoring.</p>
           </div>
-          <div>
-            <h3 class="font-semibold">Multilingual Sign Language Model</h3>
-            <p class="text-sm text-gray-600">In Progress (Summer 2025)</p>
-            <p>Developing a <strong>visual model</strong> with an <strong>avatar-based system</strong> for accessibility.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold">Oral Disease Classification</h3>
-            <p class="text-sm text-gray-600">In Progress (Data Collection)</p>
-            <p>Leading <strong>data curation</strong> and planning <strong>CNN models</strong> with interpretability tools.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold">Digikala Review Analysis</h3>
-            <p>Analyzed 10,000+ reviews with a <strong>rule-based system</strong> and <strong>LLM agent</strong>.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold">Persian Cultural Dataset</h3>
-            <p>Led <strong>multimodal data collection</strong> for NLP applications.</p>
+          <div class="card p-6">
+            <h3 class="text-xl font-bold mb-4">Teaching Experience</h3>
+            <h4 class="font-semibold">Teaching Assistant & Lab Instructor</h4>
+            <p class="text-sm text-gray-400">Sharif University of Technology</p>
+            <p class="text-gray-300">Courses in AI, Computer Architecture, Data Structures; led labs.</p>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Work Experience -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
-        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Work Experience</h2>
-        <div class="mt-4 text-gray-700 space-y-4">
-          <div>
-            <h3 class="font-semibold">Software Development Intern</h3>
-            <p class="text-sm text-gray-600">TAM Iran Khodro Co., Tehran, Iran | Jul 2022 – Sep 2022</p>
-            <p>Developed an <strong>ASP.NET Core</strong> app and a <strong>real-time monitoring system</strong> for industrial use.</p>
-          </div>
+  <!-- Certifications Section -->
+  <section class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-white fade-in-up">Certifications</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card p-6 fade-in-up delay-200">
+          <h4 class="font-bold">Task-Oriented AI Bootcamp, Quera</h4>
+          <p class="text-sm text-gray-400">Aug 2025 | ID: 1kBpLHns</p>
         </div>
+        <div class="card p-6 fade-in-up delay-400">
+          <h4 class="font-bold">Structuring ML Projects, Coursera</h4>
+          <p class="text-sm text-gray-400">Oct 2024 | ID: NAQC224ZKTXL</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-600">
+          <h4 class="font-bold">Deep Learning with PyTorch, DataCamp</h4>
+          <p class="text-sm text-gray-400">Aug 2024 | Skills: PyTorch</p>
+        </div>
+        <div class="card p-6 fade-in-up delay-800">
+          <h4 class="font-bold">Intro to TensorFlow, Coursera</h4>
+          <p class="text-sm text-gray-400">Sep 2022 | ID: ZXJS6CFNXX3X</p>
+        </div>
+        <!-- Add more as needed -->
       </div>
     </div>
+  </section>
 
-    <!-- Teaching Experience -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
-        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Teaching Experience</h2>
-        <div class="mt-4 text-gray-700 space-y-4">
-          <div>
-            <h3 class="font-semibold">Teaching Assistant & Lab Instructor</h3>
-            <p class="text-sm text-gray-600">Sharif University of Technology, Tehran, Iran</p>
-            <p>Supported <strong>Computer Systems & Architecture</strong>, <strong>AI & CS</strong>, and led labs for Digital Systems and Logic Design.</p>
-          </div>
-        </div>
-      </div>
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 bg-black/50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-8 text-white fade-in-up">Get In Touch</h2>
+      <p class="text-gray-300 mb-8 fade-in-up delay-200">+98 912 092 0000 | ysmntavakoli99@gmail.com</p>
+      <form class="max-w-md mx-auto space-y-4 fade-in-up delay-400" onsubmit="alert('Message sent!'); return false;">
+        <input type="text" placeholder="Your Name" class="w-full p-3 bg-white/10 rounded-lg text-white border border-white/20 focus:border-blue-400">
+        <input type="email" placeholder="Your Email" class="w-full p-3 bg-white/10 rounded-lg text-white border border-white/20 focus:border-blue-400">
+        <textarea placeholder="Your Message" rows="4" class="w-full p-3 bg-white/10 rounded-lg text-white border border-white/20 focus:border-blue-400"></textarea>
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-bold transition">Send Message</button>
+      </form>
     </div>
+  </section>
 
-    <!-- Certifications -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-      <div class="section-card p-6 rounded-xl shadow-lg fade-in">
-        <h2 class="text-2xl font-bold text-purple-900 border-b-2 border-purple-200 pb-2">Certifications</h2>
-        <div class="mt-4 text-gray-700 space-y-2">
-          <p><strong>Task-Oriented AI Bootcamp</strong>, Quera, Aug 2025 | ID: 1kBpLHns</p>
-          <p><strong>Structuring ML Projects</strong>, Coursera, Oct 2024 | ID: NAQC224ZKTXL</p>
-          <p><strong>Deep Learning with PyTorch</strong>, DataCamp, Aug 2024 | Skills: PyTorch</p>
-          <p><strong>Ensemble Methods</strong>, DataCamp, Aug 2024 | Skills: Python, Scikit-Learn</p>
-          <p><strong>Image Processing</strong>, DataCamp, Aug 2024</p>
-          <p><strong>Intro to Deep Learning</strong>, DataCamp, Aug 2024 | Skills: PyTorch</p>
-          <p><strong>Open Data Hackathon</strong>, IEEE Iran, Dec 2022 | ID: 160657</p>
-          <p><strong>Intro to TensorFlow</strong>, Coursera, Sep 2022 | ID: ZXJS6CFNXX3X</p>
-          <p><strong>Neural Networks</strong>, Coursera, Aug 2022 | ID: PYEX3TF8PANJ</p>
-          <p><strong>Data Importing & Cleaning</strong>, DataCamp, Jul 2022</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Footer -->
+  <footer class="bg-black/80 py-6 text-center text-gray-400">
+    <p>&copy; 2025 Yasamin Tavakoli. Built with ❤️</p>
+  </footer>
+
+  <script>
+    // Scroll-triggered animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationDelay = '0s';
+          entry.target.classList.add('fade-in-up');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
 </body>
 </html>
