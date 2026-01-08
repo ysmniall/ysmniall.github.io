@@ -7,322 +7,331 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
             --bg: #FAF9F6;
-            --sage: #4A5D4E;
             --text: #1a1a1a;
-            --soft-green: #E8EBE8;
+            --accent: #0A3D2E;
+            --card-bg: #ffffff;
+            --section-alt: #EBF2ED;
+            --border: #ced4ce;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        body.dark-mode {
+            --bg: #040705; 
+            --text: #F0F4F0;
+            --accent: #00FF85;
+            --card-bg: #0D140F;
+            --section-alt: #090F0B;
+            --border: #1E2E23;
+        }
+
         body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
         .serif { font-family: 'Playfair Display', serif; }
         .section-padding { padding: 120px 24px; }
         
-        /* Hero Styles */
         .zoom-wrapper { width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-        /* تغییر ۱: حذف فیلتر سیاه سفید */
-        #hero-img { width: 400px; height: 550px; object-fit: cover; transform: scale(2); }
+        #hero-img { width: 400px; height: 550px; object-fit: cover; transform: scale(2); border-radius: 4px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); }
         
-        /* Typography & Decor */
-        .reveal { opacity: 0; transform: translateY(30px); }
-        .nav-link { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+        .reveal { opacity: 0; transform: translateY(40px); }
+        .nav-link { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 800; color: var(--text); }
         
-        /* Custom Scrollbar */
-        .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--sage); width: 0%; z-index: 100; }
+        .progress-bar { position: fixed; top: 0; left: 0; height: 6px; background: var(--accent); width: 0%; z-index: 100; box-shadow: 0 0 15px var(--accent); }
         
-        /* تغییر ۲: استایل جدید برای اسکرول افقی طبیعی */
+        /* Horizontal Scroll Projects */
         .horizontal-scroll-container {
-            display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            padding: 2rem 2.5rem; /* فضای کافی برای دیده شدن سایه‌ها */
-            scroll-snap-type: x mandatory; /* حالت آهنربایی */
-            -webkit-overflow-scrolling: touch; /* نرمی اسکرول در موبایل */
-            /* مخفی کردن اسکرول‌بار برای زیبایی */
-            scrollbar-width: none; 
-            -ms-overflow-style: none;
+            display: flex; gap: 2.5rem; overflow-x: auto; padding: 2rem 2.5rem;
+            scroll-snap-type: x mandatory; scrollbar-width: none; cursor: grab;
         }
-        .horizontal-scroll-container::-webkit-scrollbar {
-            display: none;
-        }
+        .horizontal-scroll-container:active { cursor: grabbing; }
+        .horizontal-scroll-container::-webkit-scrollbar { display: none; }
 
         .project-card {
-            min-width: 400px; /* عرض کارت‌ها کمی بیشتر شد برای خوانایی */
-            flex-shrink: 0;
-            background: white;
-            padding: 40px;
-            border: 1px solid #eee;
-            scroll-snap-align: center; /* کارت همیشه در مرکز می‌ایستد */
-            border-radius: 4px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            min-width: 450px; flex-shrink: 0; background: var(--card-bg); 
+            padding: 50px; border: 2px solid var(--border);
+            scroll-snap-align: center; border-radius: 16px;
+            transition: all 0.4s ease;
         }
+        .project-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+
+        .nav-btn {
+            width: 50px; height: 50px; border-radius: 50%; border: 2px solid var(--accent);
+            color: var(--accent); display: flex; items-center; justify-content: center;
+            transition: all 0.3s ease; background: transparent;
+        }
+        .nav-btn:hover { background: var(--accent); color: var(--bg); }
+
+        #theme-toggle {
+            cursor: pointer; padding: 12px; border-radius: 50%;
+            background: var(--accent); color: var(--bg);
+            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .accent-text { color: var(--accent); transition: color 0.5s; }
+        .accent-bg { background-color: var(--accent); transition: background-color 0.5s; }
+        .cert-link:hover { text-decoration: underline; opacity: 0.8; }
     </style>
 </head>
-<body>
+<body class="">
 
     <div class="progress-bar"></div>
 
-    <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-center bg-[#FAF9F6]/50 backdrop-blur-md">
-        <span class="serif text-xl font-bold italic tracking-tighter text-green-900">Y. Tavakoli</span>
-        <div class="hidden md:flex space-x-10">
-            <a href="#about" class="nav-link hover:text-green-700 transition">Summary</a>
-            <a href="#experience" class="nav-link hover:text-green-700 transition">Experience</a>
-            <a href="#projects-section" class="nav-link hover:text-green-700 transition">Projects</a>
-            <a href="mailto:ysmntavakoli99@gmail.com" class="nav-link text-green-800 border-b border-green-800">Contact</a>
+    <nav class="fixed w-full z-50 px-10 py-6 flex justify-between items-center bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)]">
+        <span class="serif text-2xl font-bold italic tracking-tighter accent-text">Y. Tavakoli</span>
+        <div class="hidden md:flex space-x-12 items-center">
+            <a href="#about" class="nav-link">Summary</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#projects-section" class="nav-link">Projects</a>
+            <a href="#certifications" class="nav-link">Certs</a>
+            <button id="theme-toggle" aria-label="Toggle Theme">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
         </div>
     </nav>
 
     <section class="zoom-wrapper">
         <div class="absolute z-10 text-center">
-            <h1 class="serif text-6xl md:text-[100px] leading-none mb-4 reveal" id="hero-name">Yasamin Tavakoli</h1>
-            <p class="text-xs uppercase tracking-[0.5em] text-gray-500 reveal">Sharif University of Technology</p>
+            <h1 class="serif text-7xl md:text-[120px] leading-none mb-4 reveal font-bold" id="hero-name">Yasamin Tavakoli</h1>
+            <p class="text-sm uppercase tracking-[0.7em] opacity-80 reveal accent-text font-black">Sharif University of Technology</p>
         </div>
         <img src="https://raw.githubusercontent.com/ysmniall/ysmniall.github.io/refs/heads/main/images/profile.jpg" alt="Yasamin" id="hero-img">
     </section>
 
     <section id="about" class="section-padding max-w-5xl mx-auto text-center">
         <div class="reveal">
-            <span class="text-[10px] uppercase tracking-widest text-green-700 font-bold">Introduction</span>
-            <h2 class="serif text-4xl mt-6 mb-10 italic">Exceptional Talent in AI & Architecture</h2>
-            <p class="text-lg text-gray-600 leading-relaxed font-light italic">
-                "Highly motivated Computer Engineer at Sharif University. Specialized in the synergy between Computer Architecture and Artificial Intelligence, with a focus on Deep Learning for Embedded Systems and Computer Vision."
+            <span class="text-[12px] uppercase tracking-[0.3em] font-black accent-text">Research & Engineering</span>
+            <h2 class="serif text-5xl mt-6 mb-12 italic">Advancing Computer Architecture through AI</h2>
+            <p class="text-2xl opacity-90 leading-relaxed font-light italic">
+                "An <strong>Exceptional Talent</strong> researcher at Sharif University, merging high-performance hardware design with deep learning to redefine <strong>EV Battery Management Systems</strong>."
             </p>
         </div>
     </section>
 
-    <section class="section-padding bg-white">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
-            <div class="reveal">
-                <h3 class="serif text-3xl mb-12">Academic Journey</h3>
-                <div class="space-y-12">
-                    <div class="relative pl-8 border-l border-green-100">
-                        <div class="absolute w-2 h-2 bg-green-800 rounded-full -left-[4.5px] top-2"></div>
-                        <h4 class="font-bold text-lg">Sharif University of Technology</h4>
-                        <p class="text-xs text-green-700 italic mb-2">MS in Computer Architecture | 2023 – Present</p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• <strong>GPA: 17.88/20</strong></li>
-                            <li>• Admitted as <strong>Exceptional Talent</strong> (Top 1% Nationwide)</li>
-                        </ul>
+    <section class="section-padding" style="background-color: var(--card-bg);">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16">
+            <div class="reveal p-10 border-2 border-[var(--border)] rounded-3xl shadow-xl">
+                <h3 class="serif text-4xl mb-12 accent-text font-bold">Education</h3>
+                <div class="space-y-16">
+                    <div class="border-l-4 pl-8" style="border-color: var(--accent);">
+                        <h4 class="font-extrabold text-2xl">Sharif University of Technology</h4>
+                        <p class="text-sm opacity-80 mb-3 italic accent-text">MS in Computer Architecture | 2023 – Present</p>
+                        <p class="text-base"><strong>GPA: 17.88 / 20</strong> — Exceptional Talent (Top 1% Nationwide).</p>
                     </div>
-                    <div class="relative pl-8 border-l border-green-100">
-                        <div class="absolute w-2 h-2 bg-green-200 rounded-full -left-[4.5px] top-2"></div>
-                        <h4 class="font-bold text-lg">Babol Noshirvani University</h4>
-                        <p class="text-xs text-green-700 italic mb-2">BS in Computer Engineering | 2019 – 2023</p>
-                        <ul class="text-sm text-gray-600 space-y-1">
-                            <li>• <strong>Ranked 1st</strong> among all graduates</li>
-                            <li>• GPA: 17.64/20</li>
-                        </ul>
+                    <div class="border-l-4 pl-8 border-gray-400">
+                        <h4 class="font-extrabold text-2xl">Babol Noshirvani University</h4>
+                        <p class="text-sm opacity-80 mb-3 italic accent-text">Bachelor of Science | 2019 – 2023</p>
+                        <p class="text-base"><strong>Ranked 3rd among all graduates</strong> — Admitted to Sharif MS without entrance exam.</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-[#F0F2F0] p-12 flex flex-col justify-center reveal">
-                <h3 class="serif text-2xl mb-6">Honors</h3>
-                <div class="space-y-6">
-                    <div class="flex items-start gap-4">
-                        <span class="serif text-2xl italic text-green-800">01</span>
-                        <p class="text-sm text-gray-600">Exceptional Talent Admission to Master's program at Sharif University.</p>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <span class="serif text-2xl italic text-green-800">02</span>
-                        <p class="text-sm text-gray-600">Top Rank Winner - IEEE Open Data Hackathon (Dec 2022).</p>
-                    </div>
-                </div>
+            <div class="reveal p-12 rounded-3xl flex flex-col justify-center shadow-2xl" style="background-color: var(--section-alt);">
+                <h3 class="serif text-3xl mb-10 accent-text italic font-bold">Academic Distinction</h3>
+                <ul class="space-y-10 text-lg font-medium">
+                    <li class="flex gap-6 items-center">
+                        <span class="serif text-5xl italic opacity-20">01</span>
+                        <span>Direct Admission to Sharif University Master's program.</span>
+                    </li>
+                    <li class="flex gap-6 items-center">
+                        <span class="serif text-5xl italic accent-text">02</span>
+                        <span class="font-bold">Ranked 3rd Overall in Computer Engineering Class of 2023.</span>
+                    </li>
+                    <li class="flex gap-6 items-center">
+                        <span class="serif text-5xl italic opacity-20">03</span>
+                        <span>Exceptional Talent designation by the National Elites Foundation.</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
     <section id="experience" class="section-padding">
         <div class="max-w-6xl mx-auto">
-            <h2 class="serif text-5xl mb-20 text-center reveal">Professional Experience</h2>
-            <div class="space-y-24">
-                <div class="grid md:grid-cols-3 gap-10 reveal">
-                    <div class="md:col-span-1">
-                        <p class="text-xs font-bold text-green-800 uppercase tracking-widest">Sep 2025 – Present</p>
-                        <h3 class="serif text-2xl mt-2">Rojin Taak Co.</h3>
-                        <p class="text-xs italic text-gray-500">.NET Software Development Intern</p>
+            <h2 class="serif text-7xl mb-24 text-center reveal italic font-bold">Career</h2>
+            <div class="space-y-32">
+                <div class="grid md:grid-cols-3 gap-12 reveal">
+                    <div>
+                        <p class="text-[13px] font-black uppercase tracking-[0.4em] accent-text">Sep 2025 – Present</p>
+                        <h3 class="serif text-3xl mt-2 italic font-bold">Rojin Taak Co.</h3>
+                        <p class="text-xs uppercase opacity-60 tracking-[0.2em] mt-1 font-bold">.NET Software Developer</p>
                     </div>
-                    <div class="md:col-span-2 text-sm text-gray-600 leading-relaxed">
-                        <p class="mb-4">Developing industrial-grade web applications utilizing <strong>ASP.NET Core</strong> and <strong>C#</strong>.</p>
-                        <ul class="space-y-2">
-                            <li>• Optimizing <strong>SQL Server</strong> performance through advanced query tuning.</li>
-                            <li>• Integrating <strong>Kafka</strong> for real-time data streaming and scalability.</li>
-                            <li>• Designing secure <strong>RESTful APIs</strong> for distributed service components.</li>
-                        </ul>
+                    <div class="md:col-span-2 text-lg opacity-90 leading-loose border-l-2 border-[var(--border)] pl-10">
+                        Developing with <strong>ASP.NET Core</strong>, optimizing <strong>SQL Server</strong>, and implementing high-throughput <strong>Kafka</strong> streams for manufacturing data.
                     </div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-10 reveal">
-                    <div class="md:col-span-1">
-                        <p class="text-xs font-bold text-green-800 uppercase tracking-widest">Oct 2023 – Present</p>
-                        <h3 class="serif text-2xl mt-2">Sharif University</h3>
-                        <p class="text-xs italic text-gray-500">Graduate Researcher | AI & Embedded</p>
+                <div class="grid md:grid-cols-3 gap-12 reveal">
+                    <div>
+                        <p class="text-[13px] font-black uppercase tracking-[0.4em] accent-text">2023 – Present</p>
+                        <h3 class="serif text-3xl mt-2 italic font-bold">Sharif University</h3>
+                        <p class="text-xs uppercase opacity-60 tracking-[0.2em] mt-1 font-bold">Graduate Researcher</p>
                     </div>
-                    <div class="md:col-span-2 text-sm text-gray-600 leading-relaxed">
-                        <p class="mb-4">Leading research on <strong>Virtual Sensor Design</strong> for EV battery management using <strong>RNN/GRU</strong>.</p>
-                        <ul class="space-y-2">
-                            <li>• Implementing model interpretability frameworks (<strong>Grad-CAM, LIME</strong>).</li>
-                            <li>• Developing hardware-efficient neural architectures for resource-constrained environments.</li>
-                        </ul>
+                    <div class="md:col-span-2 text-lg opacity-90 leading-loose border-l-2 border-[var(--border)] pl-10">
+                        Designing <strong>Virtual Sensors</strong> for EVs. Expert in <strong>RNN/GRU</strong> and Explainable AI (<strong>Grad-CAM/LIME</strong>).
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-32 bg-white" id="projects-section">
-        <div class="px-10 mb-10 text-center">
-            <h2 class="serif text-4xl reveal">Selected Projects & Research</h2>
-            <p class="text-xs uppercase tracking-widest text-gray-400 mt-4 reveal">Your browser's natural scrolling: Swipe left/right to view</p>
+    <section id="projects-section" class="py-32 relative overflow-hidden" style="background-color: var(--card-bg);">
+        <div class="px-10 mb-20 text-center">
+            <h2 class="serif text-6xl reveal italic font-bold">Research Portfolio</h2>
+            <p class="text-[10px] uppercase tracking-widest opacity-40 mt-4 reveal">Drag or use arrows to navigate</p>
         </div>
-        <div class="horizontal-scroll-container reveal">
+
+        <div class="absolute top-1/2 left-8 z-20 hidden md:block">
+            <button id="prevBtn" class="nav-btn"><i class="fas fa-chevron-left"></i></button>
+        </div>
+        <div class="absolute top-1/2 right-8 z-20 hidden md:block">
+            <button id="nextBtn" class="nav-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="horizontal-scroll-container reveal" id="projectSlider">
             <div class="project-card">
-                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Thesis</span>
-                <h4 class="serif text-2xl my-4">EV Virtual Sensor</h4>
-                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Master's Thesis | Dr. Ejlali</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Designing RNN/GRU-based deep learning models for accurate battery temperature estimation to enhance safety in BMS, replacing physical sensors.</p>
+                <span class="text-[11px] font-black uppercase tracking-widest accent-text">Master's Thesis</span>
+                <h4 class="serif text-3xl my-6 font-bold">EV Virtual Sensor</h4>
+                <p class="text-base opacity-80 leading-relaxed italic border-b border-gray-100 pb-6">"Fault-tolerant thermal estimation using GRU models."</p>
+                <div class="flex gap-3 text-xs font-bold mt-4">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">PyTorch</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">Embedded AI</span>
+                </div>
             </div>
             <div class="project-card">
-                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">AI & Data</span>
-                <h4 class="serif text-2xl my-4">Multimodal RAG System</h4>
-                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Python, Selenium, Vector DB</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Developed a RAG pipeline for cross-modal search of Persian culinary data. Engineered a robust web scraper to collect and pre-process over 50,000 data points.</p>
+                <span class="text-[11px] font-black uppercase tracking-widest accent-text">Generative AI</span>
+                <h4 class="serif text-3xl my-6 font-bold">Multimodal RAG</h4>
+                <p class="text-base opacity-80 leading-relaxed italic border-b border-gray-100 pb-6">"Cross-modal search and analysis of Persian culinary data."</p>
+                <div class="flex gap-3 text-xs font-bold mt-4">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">Vector DB</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">Selenium</span>
+                </div>
             </div>
             <div class="project-card">
-                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Computer Vision</span>
-                <h4 class="serif text-2xl my-4">Farsi Sign Language Recognition</h4>
-                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Bachelor's Thesis</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Created a real-time Computer Vision pipeline using CNNs. Developed a comprehensive custom dataset from scratch for accurate gesture recognition.</p>
+                <span class="text-[11px] font-black uppercase tracking-widest accent-text">Computer Vision</span>
+                <h4 class="serif text-3xl my-6 font-bold">Farsi Sign Language</h4>
+                <p class="text-base opacity-80 leading-relaxed italic border-b border-gray-100 pb-6">"Real-time CNN pipeline with a custom dataset built from scratch."</p>
+                <div class="flex gap-3 text-xs font-bold mt-4">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">CNN</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">OpenCV</span>
+                </div>
             </div>
             <div class="project-card">
-                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">NLP</span>
-                <h4 class="serif text-2xl my-4">Digikala Review Analysis</h4>
-                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">LLMs, GPT-based, NLP</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Leveraged Large Language Models to process and analyze 10,000+ customer reviews, generating concise summaries for data-driven decisions.</p>
-            </div>
-             <div class="project-card">
-                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Medical AI</span>
-                <h4 class="serif text-2xl my-4">Oral Disease Classification</h4>
-                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Python, PyTorch, CNNs</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Implemented Convolutional Neural Networks (CNNs) for the automated diagnosis and classification of oral diseases from medical histopathology images.</p>
+                <span class="text-[11px] font-black uppercase tracking-widest accent-text">NLP</span>
+                <h4 class="serif text-3xl my-6 font-bold">Digikala Analysis</h4>
+                <p class="text-base opacity-80 leading-relaxed italic border-b border-gray-100 pb-6">"Automated insights from 10k reviews using LLM agents."</p>
+                <div class="flex gap-3 text-xs font-bold mt-4">
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">LLMs</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full">GPT</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="skills" class="section-padding bg-[#F0F2F0]">
+    <section id="certifications" class="section-padding">
         <div class="max-w-6xl mx-auto">
-            <h2 class="serif text-4xl mb-16 reveal">Technical Expertise</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
-                <div class="reveal">
-                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">AI & Research</h5>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li>Deep Learning (RNN, CNN)</li>
-                        <li>Generative AI & RAG</li>
-                        <li>PyTorch / TensorFlow</li>
-                        <li>Model Interpretability</li>
+            <h2 class="serif text-5xl mb-20 reveal italic font-bold accent-text text-center underline decoration-green-800 underline-offset-8">Certifications</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="reveal p-8 bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-sm">
+                    <i class="fas fa-rocket text-2xl accent-text mb-6"></i>
+                    <h4 class="font-black text-xs uppercase tracking-widest mb-6 border-b border-[var(--border)] pb-2">Bootcamps & Awards</h4>
+                    <ul class="text-sm space-y-6">
+                        <li>
+                            <a href="https://quera.org/certificate/1kBpLHns/" target="_blank" class="cert-link font-bold">AI Project-Based Bootcamp - Quera</a>
+                            <p class="text-[10px] opacity-60 mt-1 uppercase">Issued Aug 2025</p>
+                        </li>
+                        <li>
+                            <a href="https://ieee.org.ir/" target="_blank" class="cert-link font-bold">IEEE Open Data Hackathon Winner</a>
+                            <p class="text-[10px] opacity-60 mt-1 uppercase">Issued Dec 2022</p>
+                        </li>
                     </ul>
                 </div>
-                <div class="reveal">
-                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">Hardware</h5>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li>Verilog / VHDL</li>
-                        <li>FPGA / ASIC Design</li>
-                        <li>SystemVerilog</li>
-                        <li>Computer Architecture</li>
+                <div class="reveal p-8 bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-sm">
+                    <i class="fas fa-university text-2xl accent-text mb-6"></i>
+                    <h4 class="font-black text-xs uppercase tracking-widest mb-6 border-b border-[var(--border)] pb-2">Coursera Certs</h4>
+                    <ul class="text-sm space-y-6">
+                        <li>
+                            <a href="https://coursera.org/verify/NAQC224ZKTXL" target="_blank" class="cert-link font-bold">Structuring ML Projects</a>
+                        </li>
+                        <li>
+                            <a href="https://coursera.org/verify/PYEX3TF8PANJ" target="_blank" class="cert-link font-bold">Neural Networks & Deep Learning</a>
+                        </li>
+                        <li>
+                            <a href="https://coursera.org/verify/ZXJS6CFNXX3X" target="_blank" class="cert-link font-bold">Introduction to TensorFlow for AI</a>
+                        </li>
                     </ul>
                 </div>
-                <div class="reveal">
-                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">Software</h5>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li>ASP.NET Core / C#</li>
-                        <li>Python (Advanced)</li>
-                        <li>C++ / JavaScript</li>
-                        <li>Kafka / REST APIs</li>
-                    </ul>
-                </div>
-                <div class="reveal">
-                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">Infrastructure</h5>
-                    <ul class="text-sm text-gray-600 space-y-2">
-                        <li>Docker / Git</li>
-                        <li>Linux (Ubuntu)</li>
-                        <li>SQL & NoSQL</li>
-                        <li>LaTeX Writing</li>
+                <div class="reveal p-8 bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl shadow-sm">
+                    <i class="fas fa-laptop-code text-2xl accent-text mb-6"></i>
+                    <h4 class="font-black text-xs uppercase tracking-widest mb-6 border-b border-[var(--border)] pb-2">DataCamp Proficiency</h4>
+                    <ul class="text-sm space-y-6">
+                        <li>
+                            <a href="https://www.datacamp.com/certificate/understanding-deep-learning-with-pytorch" target="_blank" class="cert-link font-bold">Deep Learning for Images - PyTorch</a>
+                        </li>
+                        <li>
+                            <a href="https://www.datacamp.com/certificate/ensemble-methods-in-python" target="_blank" class="cert-link font-bold">Ensemble Methods in Python</a>
+                        </li>
+                        <li>
+                            <a href="https://www.datacamp.com/certificate/image-processing" target="_blank" class="cert-link font-bold">Image Processing & Cleaning</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section-padding bg-white">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="serif text-3xl mb-12 italic reveal">Selected Certifications</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-[11px] reveal">
-                <div class="p-6 border border-gray-100 italic">Quera: AI Project-Based Bootcamp (2025)</div>
-                <div class="p-6 border border-gray-100 italic">Coursera: Structuring ML Projects & Deep Learning</div>
-                <div class="p-6 border border-gray-100 italic">DataCamp: PyTorch Proficiency & Ensemble Methods</div>
-            </div>
+    <footer class="py-32 text-center border-t border-[var(--border)]" style="background-color: var(--section-alt);">
+        <h2 class="serif text-6xl italic mb-12 reveal font-bold accent-text">Collaborate</h2>
+        <div class="flex justify-center space-x-16 mb-20 reveal">
+            <a href="mailto:ysmntavakoli99@gmail.com" class="text-lg border-b-2 border-[var(--accent)] font-bold hover:scale-110 transition inline-block">Email</a>
+            <a href="https://linkedin.com/in/yasamin-tavakoli-800943236/" target="_blank" class="text-lg border-b-2 border-[var(--accent)] font-bold hover:scale-110 transition inline-block">LinkedIn</a>
+            <a href="https://github.com/ysmniall" target="_blank" class="text-lg border-b-2 border-[var(--accent)] font-bold hover:scale-110 transition inline-block">GitHub</a>
         </div>
-    </section>
-
-    <footer class="py-32 text-center bg-[#FAF9F6]">
-        <h2 class="serif text-5xl italic mb-10 reveal">Contact</h2>
-        <div class="flex justify-center space-x-8 mb-16 reveal">
-            <a href="mailto:ysmntavakoli99@gmail.com" class="text-sm border-b border-black font-bold hover:text-green-800 transition">Email Me</a>
-            <a href="https://linkedin.com" class="text-sm border-b border-black hover:text-green-800 transition">LinkedIn</a>
-            <a href="https://github.com/ysmniall" class="text-sm border-b border-black hover:text-green-800 transition">GitHub</a>
-        </div>
-        <p class="text-[9px] uppercase tracking-[0.4em] opacity-40">© 2026 Yasamin Tavakoli. From Tehran with Precision.</p>
+        <p class="text-[11px] uppercase tracking-[0.6em] opacity-40 italic font-bold">© 2026 Yasamin Tavakoli. Designed for Sharif Excellence.</p>
     </footer>
 
     <script>
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger, Draggable);
 
-        // Progress Bar
-        gsap.to(".progress-bar", {
-            width: "100%",
-            ease: "none",
-            scrollTrigger: { scrub: 0.3 }
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            themeIcon.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
 
-        // Hero Zoom Out (بدون تغییر فیلتر رنگ)
-        gsap.to("#hero-img", {
-            scale: 1,
-            scrollTrigger: {
-                trigger: ".zoom-wrapper",
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.className = 'fas fa-sun';
+        }
+
+        // Project Navigation & Drag
+        const slider = document.getElementById('projectSlider');
+        Draggable.create(slider, { type: "scrollLeft", edgeResistance: 0.65, throwProps: true });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            slider.scrollBy({ left: 480, behavior: 'smooth' });
+        });
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            slider.scrollBy({ left: -480, behavior: 'smooth' });
         });
 
-        // Hero Text Movement
-        gsap.to("#hero-name", {
-            y: -100,
-            opacity: 0,
-            scrollTrigger: {
-                trigger: ".zoom-wrapper",
-                start: "top top",
-                scrub: true
-            }
-        });
+        // Animations
+        gsap.to(".progress-bar", { width: "100%", ease: "none", scrollTrigger: { scrub: 0.2 } });
+        gsap.to("#hero-img", { scale: 1, scrollTrigger: { trigger: ".zoom-wrapper", start: "top top", end: "bottom top", scrub: true } });
 
-        // Section Reveal Animation
         const reveals = document.querySelectorAll(".reveal");
         reveals.forEach((el) => {
-            gsap.to(el, {
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: "power3.out",
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                }
-            });
+            gsap.to(el, { opacity: 1, y: 0, duration: 1.5, ease: "power4.out", scrollTrigger: { trigger: el, start: "top 95%", toggleActions: "play none none reverse" } });
         });
-        
-        // تغییر مهم: حذف کد GSAP مربوط به اسکرول افقی، چون حالا با CSS native انجام می‌شود.
     </script>
 </body>
 </html>
