@@ -22,18 +22,42 @@
         
         /* Hero Styles */
         .zoom-wrapper { width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
-        #hero-img { width: 400px; height: 550px; object-fit: cover; transform: scale(2); transition: filter 0.5s; }
+        /* تغییر ۱: حذف فیلتر سیاه سفید */
+        #hero-img { width: 400px; height: 550px; object-fit: cover; transform: scale(2); }
         
         /* Typography & Decor */
-        .line { height: 1px; background: var(--sage); width: 0; }
         .reveal { opacity: 0; transform: translateY(30px); }
         .nav-link { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
         
         /* Custom Scrollbar */
         .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--sage); width: 0%; z-index: 100; }
         
-        /* Project Cards */
-        .project-card { min-width: 350px; background: white; padding: 40px; border: 1px solid #eee; }
+        /* تغییر ۲: استایل جدید برای اسکرول افقی طبیعی */
+        .horizontal-scroll-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 2.5rem; /* فضای کافی برای دیده شدن سایه‌ها */
+            scroll-snap-type: x mandatory; /* حالت آهنربایی */
+            -webkit-overflow-scrolling: touch; /* نرمی اسکرول در موبایل */
+            /* مخفی کردن اسکرول‌بار برای زیبایی */
+            scrollbar-width: none; 
+            -ms-overflow-style: none;
+        }
+        .horizontal-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .project-card {
+            min-width: 400px; /* عرض کارت‌ها کمی بیشتر شد برای خوانایی */
+            flex-shrink: 0;
+            background: white;
+            padding: 40px;
+            border: 1px solid #eee;
+            scroll-snap-align: center; /* کارت همیشه در مرکز می‌ایستد */
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
     </style>
 </head>
 <body>
@@ -45,7 +69,7 @@
         <div class="hidden md:flex space-x-10">
             <a href="#about" class="nav-link hover:text-green-700 transition">Summary</a>
             <a href="#experience" class="nav-link hover:text-green-700 transition">Experience</a>
-            <a href="#skills" class="nav-link hover:text-green-700 transition">Skills</a>
+            <a href="#projects-section" class="nav-link hover:text-green-700 transition">Projects</a>
             <a href="mailto:ysmntavakoli99@gmail.com" class="nav-link text-green-800 border-b border-green-800">Contact</a>
         </div>
     </nav>
@@ -55,7 +79,7 @@
             <h1 class="serif text-6xl md:text-[100px] leading-none mb-4 reveal" id="hero-name">Yasamin Tavakoli</h1>
             <p class="text-xs uppercase tracking-[0.5em] text-gray-500 reveal">Sharif University of Technology</p>
         </div>
-        <img src="https://raw.githubusercontent.com/ysmniall/ysmniall.github.io/refs/heads/main/images/profile.jpg" alt="Yasamin" id="hero-img" class="grayscale">
+        <img src="https://raw.githubusercontent.com/ysmniall/ysmniall.github.io/refs/heads/main/images/profile.jpg" alt="Yasamin" id="hero-img">
     </section>
 
     <section id="about" class="section-padding max-w-5xl mx-auto text-center">
@@ -146,34 +170,41 @@
         </div>
     </section>
 
-    <section class="py-32 bg-white overflow-hidden" id="projects-section">
-        <div class="px-10 mb-10">
+    <section class="py-32 bg-white" id="projects-section">
+        <div class="px-10 mb-10 text-center">
             <h2 class="serif text-4xl reveal">Selected Projects & Research</h2>
+            <p class="text-xs uppercase tracking-widest text-gray-400 mt-4 reveal">Your browser's natural scrolling: Swipe left/right to view</p>
         </div>
-        <div class="flex gap-8 px-10" id="project-container">
-            <div class="project-card reveal">
+        <div class="horizontal-scroll-container reveal">
+            <div class="project-card">
                 <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Thesis</span>
                 <h4 class="serif text-2xl my-4">EV Virtual Sensor</h4>
                 <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Master's Thesis | Dr. Ejlali</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Replacing physical sensors with GRU-based deep learning models for accurate thermal estimation.</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Designing RNN/GRU-based deep learning models for accurate battery temperature estimation to enhance safety in BMS, replacing physical sensors.</p>
             </div>
-            <div class="project-card reveal">
+            <div class="project-card">
                 <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">AI & Data</span>
-                <h4 class="serif text-2xl my-4">Multimodal RAG</h4>
+                <h4 class="serif text-2xl my-4">Multimodal RAG System</h4>
                 <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Python, Selenium, Vector DB</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Cross-modal search for Persian culinary data. Engineered scraper for 50,000+ data points.</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Developed a RAG pipeline for cross-modal search of Persian culinary data. Engineered a robust web scraper to collect and pre-process over 50,000 data points.</p>
             </div>
-            <div class="project-card reveal">
+            <div class="project-card">
                 <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Computer Vision</span>
-                <h4 class="serif text-2xl my-4">Farsi Sign Language</h4>
+                <h4 class="serif text-2xl my-4">Farsi Sign Language Recognition</h4>
                 <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Bachelor's Thesis</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Real-time CNN pipeline for gesture recognition with custom dataset creation.</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Created a real-time Computer Vision pipeline using CNNs. Developed a comprehensive custom dataset from scratch for accurate gesture recognition.</p>
             </div>
-            <div class="project-card reveal">
+            <div class="project-card">
                 <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">NLP</span>
-                <h4 class="serif text-2xl my-4">Digikala Analysis</h4>
-                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">LLMs, GPT, NLP</p>
-                <p class="text-sm text-gray-600 leading-relaxed">Automated extraction of insights from 10,000+ customer reviews using LLMs.</p>
+                <h4 class="serif text-2xl my-4">Digikala Review Analysis</h4>
+                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">LLMs, GPT-based, NLP</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Leveraged Large Language Models to process and analyze 10,000+ customer reviews, generating concise summaries for data-driven decisions.</p>
+            </div>
+             <div class="project-card">
+                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Medical AI</span>
+                <h4 class="serif text-2xl my-4">Oral Disease Classification</h4>
+                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Python, PyTorch, CNNs</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Implemented Convolutional Neural Networks (CNNs) for the automated diagnosis and classification of oral diseases from medical histopathology images.</p>
             </div>
         </div>
     </section>
@@ -222,16 +253,6 @@
         </div>
     </section>
 
-    <section class="section-padding">
-        <div class="max-w-4xl mx-auto reveal">
-            <h2 class="serif text-3xl mb-10 italic">Academic Mentorship</h2>
-            <div class="space-y-6 text-sm text-gray-600">
-                <p><strong>Graduate TA @ Sharif:</strong> Computer Systems & Architecture, Digital Systems Design, Operating Systems, Fault-Tolerant Systems.</p>
-                <p><strong>Undergraduate TA @ Noshirvani:</strong> AI, Data Structures & Algorithms, Formal Languages, Linear Algebra.</p>
-            </div>
-        </div>
-    </section>
-
     <section class="section-padding bg-white">
         <div class="max-w-6xl mx-auto">
             <h2 class="serif text-3xl mb-12 italic reveal">Selected Certifications</h2>
@@ -246,9 +267,9 @@
     <footer class="py-32 text-center bg-[#FAF9F6]">
         <h2 class="serif text-5xl italic mb-10 reveal">Contact</h2>
         <div class="flex justify-center space-x-8 mb-16 reveal">
-            <a href="mailto:ysmntavakoli99@gmail.com" class="text-sm border-b border-black">Email</a>
-            <a href="https://linkedin.com" class="text-sm border-b border-black">LinkedIn</a>
-            <a href="https://github.com/ysmniall" class="text-sm border-b border-black">GitHub</a>
+            <a href="mailto:ysmntavakoli99@gmail.com" class="text-sm border-b border-black font-bold hover:text-green-800 transition">Email Me</a>
+            <a href="https://linkedin.com" class="text-sm border-b border-black hover:text-green-800 transition">LinkedIn</a>
+            <a href="https://github.com/ysmniall" class="text-sm border-b border-black hover:text-green-800 transition">GitHub</a>
         </div>
         <p class="text-[9px] uppercase tracking-[0.4em] opacity-40">© 2026 Yasamin Tavakoli. From Tehran with Precision.</p>
     </footer>
@@ -263,10 +284,9 @@
             scrollTrigger: { scrub: 0.3 }
         });
 
-        // Hero Zoom Out
+        // Hero Zoom Out (بدون تغییر فیلتر رنگ)
         gsap.to("#hero-img", {
             scale: 1,
-            filter: "grayscale(0)",
             scrollTrigger: {
                 trigger: ".zoom-wrapper",
                 start: "top top",
@@ -286,7 +306,7 @@
             }
         });
 
-        // Section Reveal
+        // Section Reveal Animation
         const reveals = document.querySelectorAll(".reveal");
         reveals.forEach((el) => {
             gsap.to(el, {
@@ -301,17 +321,8 @@
                 }
             });
         });
-
-        // Horizontal Scroll for Projects
-        gsap.to("#project-container", {
-            xPercent: -20,
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#projects-section",
-                start: "top center",
-                scrub: 1,
-            }
-        });
+        
+        // تغییر مهم: حذف کد GSAP مربوط به اسکرول افقی، چون حالا با CSS native انجام می‌شود.
     </script>
 </body>
 </html>
