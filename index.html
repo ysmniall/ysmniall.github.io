@@ -3,189 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yasamin Tavakoli | Researcher Portfolio</title>
+    <title>Yasamin Tavakoli | Researcher & Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg: #FAF9F6;
             --sage: #4A5D4E;
-            --text: #2C2C2C;
+            --text: #1a1a1a;
+            --soft-green: #E8EBE8;
         }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg); 
-            color: var(--text);
-            overflow-x: hidden;
-        }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); overflow-x: hidden; }
         .serif { font-family: 'Playfair Display', serif; }
+        .section-padding { padding: 120px 24px; }
         
-        /* استایل نگهدارنده برای انیمیشن زوم */
-        .hero-container {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
+        /* Hero Styles */
+        .zoom-wrapper { width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+        #hero-img { width: 400px; height: 550px; object-fit: cover; transform: scale(2); transition: filter 0.5s; }
         
-        .zoom-img-wrapper {
-            width: 300px;
-            height: 400px;
-            overflow: hidden;
-            border-radius: 2px;
-            position: relative;
-        }
+        /* Typography & Decor */
+        .line { height: 1px; background: var(--sage); width: 0; }
+        .reveal { opacity: 0; transform: translateY(30px); }
+        .nav-link { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
         
-        .zoom-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.5); /* حالت شروع زوم */
-        }
-
-        .reveal-up { opacity: 0; transform: translateY(50px); }
+        /* Custom Scrollbar */
+        .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--sage); width: 0%; z-index: 100; }
         
-        /* استایل نوار پیشرفت اسکرول در بالای سایت */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            background: var(--sage);
-            width: 0%;
-            z-index: 100;
-        }
+        /* Project Cards */
+        .project-card { min-width: 350px; background: white; padding: 40px; border: 1px solid #eee; }
     </style>
 </head>
 <body>
 
     <div class="progress-bar"></div>
 
-    <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-center mix-blend-difference text-white md:text-black">
-        <span class="serif text-lg font-bold tracking-widest uppercase">Y. Tavakoli</span>
-        <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.3em]">
-            <a href="#work" class="hover:opacity-50 transition">Work</a>
-            <a href="#research" class="hover:opacity-50 transition">Research</a>
-            <a href="#contact" class="hover:opacity-50 transition">Contact</a>
+    <nav class="fixed w-full z-50 px-10 py-8 flex justify-between items-center bg-[#FAF9F6]/50 backdrop-blur-md">
+        <span class="serif text-xl font-bold italic tracking-tighter text-green-900">Y. Tavakoli</span>
+        <div class="hidden md:flex space-x-10">
+            <a href="#about" class="nav-link hover:text-green-700 transition">Summary</a>
+            <a href="#experience" class="nav-link hover:text-green-700 transition">Experience</a>
+            <a href="#skills" class="nav-link hover:text-green-700 transition">Skills</a>
+            <a href="mailto:ysmntavakoli99@gmail.com" class="nav-link text-green-800 border-b border-green-800">Contact</a>
         </div>
     </nav>
 
-    <section class="hero-container bg-white">
-        <div class="text-center z-10 absolute">
-            <h1 class="serif text-6xl md:text-[120px] italic leading-none hero-title">Yasamin</h1>
-            <h1 class="serif text-6xl md:text-[120px] font-bold leading-none hero-title-2">Tavakoli</h1>
+    <section class="zoom-wrapper">
+        <div class="absolute z-10 text-center">
+            <h1 class="serif text-6xl md:text-[100px] leading-none mb-4 reveal" id="hero-name">Yasamin Tavakoli</h1>
+            <p class="text-xs uppercase tracking-[0.5em] text-gray-500 reveal">Sharif University of Technology</p>
         </div>
-        <div class="zoom-img-wrapper shadow-2xl">
-            <img src="https://raw.githubusercontent.com/ysmniall/ysmniall.github.io/refs/heads/main/images/profile.jpg" alt="Yasamin" id="hero-img">
-        </div>
-        <div class="absolute bottom-10 text-[10px] uppercase tracking-[0.5em] animate-bounce">
-            Scroll to Explore
-        </div>
+        <img src="https://raw.githubusercontent.com/ysmniall/ysmniall.github.io/refs/heads/main/images/profile.jpg" alt="Yasamin" id="hero-img" class="grayscale">
     </section>
 
-    <section id="work" class="py-32 px-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-        <div class="reveal-up">
-            <span class="text-xs font-bold text-green-800 uppercase tracking-widest">Sharif University</span>
-            <h2 class="serif text-4xl mt-4 mb-8">Engineering with <br><span class="italic text-gray-400">Precision & Intelligence</span></h2>
-            <div class="w-20 h-[1px] bg-black mb-8"></div>
-            <p class="text-sm text-gray-600 leading-loose">
-                Master's candidate specializing in Computer Architecture. Admitted as an Exceptional Talent, working on the intersection of Deep Learning and Embedded Systems.
+    <section id="about" class="section-padding max-w-5xl mx-auto text-center">
+        <div class="reveal">
+            <span class="text-[10px] uppercase tracking-widest text-green-700 font-bold">Introduction</span>
+            <h2 class="serif text-4xl mt-6 mb-10 italic">Exceptional Talent in AI & Architecture</h2>
+            <p class="text-lg text-gray-600 leading-relaxed font-light italic">
+                "Highly motivated Computer Engineer at Sharif University. Specialized in the synergy between Computer Architecture and Artificial Intelligence, with a focus on Deep Learning for Embedded Systems and Computer Vision."
             </p>
         </div>
-        <div class="relative reveal-up">
-            <div class="bg-gray-100 aspect-video rounded-sm flex items-center justify-center p-10">
-                <p class="serif text-2xl text-center italic text-green-900">"Designing the future of EV Battery Management through Virtual Sensors."</p>
+    </section>
+
+    <section class="section-padding bg-white">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-20">
+            <div class="reveal">
+                <h3 class="serif text-3xl mb-12">Academic Journey</h3>
+                <div class="space-y-12">
+                    <div class="relative pl-8 border-l border-green-100">
+                        <div class="absolute w-2 h-2 bg-green-800 rounded-full -left-[4.5px] top-2"></div>
+                        <h4 class="font-bold text-lg">Sharif University of Technology</h4>
+                        <p class="text-xs text-green-700 italic mb-2">MS in Computer Architecture | 2023 – Present</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• <strong>GPA: 17.88/20</strong></li>
+                            <li>• Admitted as <strong>Exceptional Talent</strong> (Top 1% Nationwide)</li>
+                        </ul>
+                    </div>
+                    <div class="relative pl-8 border-l border-green-100">
+                        <div class="absolute w-2 h-2 bg-green-200 rounded-full -left-[4.5px] top-2"></div>
+                        <h4 class="font-bold text-lg">Babol Noshirvani University</h4>
+                        <p class="text-xs text-green-700 italic mb-2">BS in Computer Engineering | 2019 – 2023</p>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• <strong>Ranked 1st</strong> among all graduates</li>
+                            <li>• GPA: 17.64/20</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-[#F0F2F0] p-12 flex flex-col justify-center reveal">
+                <h3 class="serif text-2xl mb-6">Honors</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <span class="serif text-2xl italic text-green-800">01</span>
+                        <p class="text-sm text-gray-600">Exceptional Talent Admission to Master's program at Sharif University.</p>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="serif text-2xl italic text-green-800">02</span>
+                        <p class="text-sm text-gray-600">Top Rank Winner - IEEE Open Data Hackathon (Dec 2022).</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="research" class="py-32 px-10 bg-[#f4f3f0]">
+    <section id="experience" class="section-padding">
         <div class="max-w-6xl mx-auto">
-            <h2 class="serif text-center text-5xl mb-20 italic reveal-up">Selected Projects</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white p-10 reveal-up border-b-2 border-transparent hover:border-green-800 transition-all duration-500">
-                    <h3 class="serif text-2xl mb-4">EV Virtual Sensor</h3>
-                    <p class="text-xs text-gray-500 italic mb-6">Deep Learning / RNN</p>
-                    <p class="text-sm text-gray-600">Replacing physical hardware with GRU-based digital twins.</p>
+            <h2 class="serif text-5xl mb-20 text-center reveal">Professional Experience</h2>
+            <div class="space-y-24">
+                <div class="grid md:grid-cols-3 gap-10 reveal">
+                    <div class="md:col-span-1">
+                        <p class="text-xs font-bold text-green-800 uppercase tracking-widest">Sep 2025 – Present</p>
+                        <h3 class="serif text-2xl mt-2">Rojin Taak Co.</h3>
+                        <p class="text-xs italic text-gray-500">.NET Software Development Intern</p>
+                    </div>
+                    <div class="md:col-span-2 text-sm text-gray-600 leading-relaxed">
+                        <p class="mb-4">Developing industrial-grade web applications utilizing <strong>ASP.NET Core</strong> and <strong>C#</strong>.</p>
+                        <ul class="space-y-2">
+                            <li>• Optimizing <strong>SQL Server</strong> performance through advanced query tuning.</li>
+                            <li>• Integrating <strong>Kafka</strong> for real-time data streaming and scalability.</li>
+                            <li>• Designing secure <strong>RESTful APIs</strong> for distributed service components.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="bg-white p-10 reveal-up md:mt-10 border-b-2 border-transparent hover:border-green-800 transition-all">
-                    <h3 class="serif text-2xl mb-4">Persian RAG</h3>
-                    <p class="text-xs text-gray-500 italic mb-6">NLP / Vector DB</p>
-                    <p class="text-sm text-gray-600">Multimodal retrieval system for culinary and review data.</p>
-                </div>
-                <div class="bg-white p-10 reveal-up border-b-2 border-transparent hover:border-green-800 transition-all">
-                    <h3 class="serif text-2xl mb-4">CV Sign Language</h3>
-                    <p class="text-xs text-gray-500 italic mb-6">Computer Vision</p>
-                    <p class="text-sm text-gray-600">Real-time gesture recognition using high-accuracy CNNs.</p>
+                <div class="grid md:grid-cols-3 gap-10 reveal">
+                    <div class="md:col-span-1">
+                        <p class="text-xs font-bold text-green-800 uppercase tracking-widest">Oct 2023 – Present</p>
+                        <h3 class="serif text-2xl mt-2">Sharif University</h3>
+                        <p class="text-xs italic text-gray-500">Graduate Researcher | AI & Embedded</p>
+                    </div>
+                    <div class="md:col-span-2 text-sm text-gray-600 leading-relaxed">
+                        <p class="mb-4">Leading research on <strong>Virtual Sensor Design</strong> for EV battery management using <strong>RNN/GRU</strong>.</p>
+                        <ul class="space-y-2">
+                            <li>• Implementing model interpretability frameworks (<strong>Grad-CAM, LIME</strong>).</li>
+                            <li>• Developing hardware-efficient neural architectures for resource-constrained environments.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-40 text-center">
-        <h2 class="serif text-5xl md:text-8xl italic mb-10 reveal-up">Let's Collaborate</h2>
-        <a href="mailto:ysmntavakoli99@gmail.com" class="text-sm uppercase tracking-widest font-bold border-b-2 border-black pb-2 hover:text-green-800 hover:border-green-800 transition-all">Get in touch</a>
+    <section class="py-32 bg-white overflow-hidden" id="projects-section">
+        <div class="px-10 mb-10">
+            <h2 class="serif text-4xl reveal">Selected Projects & Research</h2>
+        </div>
+        <div class="flex gap-8 px-10" id="project-container">
+            <div class="project-card reveal">
+                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Thesis</span>
+                <h4 class="serif text-2xl my-4">EV Virtual Sensor</h4>
+                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Master's Thesis | Dr. Ejlali</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Replacing physical sensors with GRU-based deep learning models for accurate thermal estimation.</p>
+            </div>
+            <div class="project-card reveal">
+                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">AI & Data</span>
+                <h4 class="serif text-2xl my-4">Multimodal RAG</h4>
+                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Python, Selenium, Vector DB</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Cross-modal search for Persian culinary data. Engineered scraper for 50,000+ data points.</p>
+            </div>
+            <div class="project-card reveal">
+                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">Computer Vision</span>
+                <h4 class="serif text-2xl my-4">Farsi Sign Language</h4>
+                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">Bachelor's Thesis</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Real-time CNN pipeline for gesture recognition with custom dataset creation.</p>
+            </div>
+            <div class="project-card reveal">
+                <span class="text-[9px] text-green-700 font-bold uppercase tracking-widest">NLP</span>
+                <h4 class="serif text-2xl my-4">Digikala Analysis</h4>
+                <p class="text-xs text-gray-500 mb-6 leading-relaxed italic">LLMs, GPT, NLP</p>
+                <p class="text-sm text-gray-600 leading-relaxed">Automated extraction of insights from 10,000+ customer reviews using LLMs.</p>
+            </div>
+        </div>
     </section>
 
-    <footer class="py-10 text-center text-[9px] uppercase tracking-widest opacity-40">
-        &copy; 2026 Yasamin Tavakoli. Designed for Excellence.
+    <section id="skills" class="section-padding bg-[#F0F2F0]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="serif text-4xl mb-16 reveal">Technical Expertise</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="reveal">
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">AI & Research</h5>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>Deep Learning (RNN, CNN)</li>
+                        <li>Generative AI & RAG</li>
+                        <li>PyTorch / TensorFlow</li>
+                        <li>Model Interpretability</li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">Hardware</h5>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>Verilog / VHDL</li>
+                        <li>FPGA / ASIC Design</li>
+                        <li>SystemVerilog</li>
+                        <li>Computer Architecture</li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">Software</h5>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>ASP.NET Core / C#</li>
+                        <li>Python (Advanced)</li>
+                        <li>C++ / JavaScript</li>
+                        <li>Kafka / REST APIs</li>
+                    </ul>
+                </div>
+                <div class="reveal">
+                    <h5 class="font-bold text-xs uppercase tracking-widest mb-6 border-b border-gray-300 pb-2">Infrastructure</h5>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li>Docker / Git</li>
+                        <li>Linux (Ubuntu)</li>
+                        <li>SQL & NoSQL</li>
+                        <li>LaTeX Writing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="max-w-4xl mx-auto reveal">
+            <h2 class="serif text-3xl mb-10 italic">Academic Mentorship</h2>
+            <div class="space-y-6 text-sm text-gray-600">
+                <p><strong>Graduate TA @ Sharif:</strong> Computer Systems & Architecture, Digital Systems Design, Operating Systems, Fault-Tolerant Systems.</p>
+                <p><strong>Undergraduate TA @ Noshirvani:</strong> AI, Data Structures & Algorithms, Formal Languages, Linear Algebra.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="serif text-3xl mb-12 italic reveal">Selected Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-[11px] reveal">
+                <div class="p-6 border border-gray-100 italic">Quera: AI Project-Based Bootcamp (2025)</div>
+                <div class="p-6 border border-gray-100 italic">Coursera: Structuring ML Projects & Deep Learning</div>
+                <div class="p-6 border border-gray-100 italic">DataCamp: PyTorch Proficiency & Ensemble Methods</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-32 text-center bg-[#FAF9F6]">
+        <h2 class="serif text-5xl italic mb-10 reveal">Contact</h2>
+        <div class="flex justify-center space-x-8 mb-16 reveal">
+            <a href="mailto:ysmntavakoli99@gmail.com" class="text-sm border-b border-black">Email</a>
+            <a href="https://linkedin.com" class="text-sm border-b border-black">LinkedIn</a>
+            <a href="https://github.com/ysmniall" class="text-sm border-b border-black">GitHub</a>
+        </div>
+        <p class="text-[9px] uppercase tracking-[0.4em] opacity-40">© 2026 Yasamin Tavakoli. From Tehran with Precision.</p>
     </footer>
 
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // 1. Progress Bar Animation
+        // Progress Bar
         gsap.to(".progress-bar", {
             width: "100%",
             ease: "none",
             scrollTrigger: { scrub: 0.3 }
         });
 
-        // 2. Hero Zoom Animation
+        // Hero Zoom Out
         gsap.to("#hero-img", {
-            scale: 1, // زوم بک به حالت عادی
+            scale: 1,
+            filter: "grayscale(0)",
             scrollTrigger: {
-                trigger: ".hero-container",
+                trigger: ".zoom-wrapper",
                 start: "top top",
                 end: "bottom top",
                 scrub: true
             }
         });
 
-        // 3. Hero Text Parallax (حرکت متن‌ها به طرفین هنگام اسکرول)
-        gsap.to(".hero-title", {
-            x: -100,
+        // Hero Text Movement
+        gsap.to("#hero-name", {
+            y: -100,
+            opacity: 0,
             scrollTrigger: {
-                trigger: ".hero-container",
-                scrub: true
-            }
-        });
-        gsap.to(".hero-title-2", {
-            x: 100,
-            scrollTrigger: {
-                trigger: ".hero-container",
+                trigger: ".zoom-wrapper",
+                start: "top top",
                 scrub: true
             }
         });
 
-        // 4. Reveal Animation for Sections
-        const reveals = document.querySelectorAll(".reveal-up");
+        // Section Reveal
+        const reveals = document.querySelectorAll(".reveal");
         reveals.forEach((el) => {
             gsap.to(el, {
                 opacity: 1,
                 y: 0,
-                duration: 1.5,
-                ease: "power4.out",
+                duration: 1.2,
+                ease: "power3.out",
                 scrollTrigger: {
                     trigger: el,
                     start: "top 85%",
                     toggleActions: "play none none reverse"
                 }
             });
+        });
+
+        // Horizontal Scroll for Projects
+        gsap.to("#project-container", {
+            xPercent: -20,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "#projects-section",
+                start: "top center",
+                scrub: 1,
+            }
         });
     </script>
 </body>
