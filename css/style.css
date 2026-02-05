@@ -1,0 +1,382 @@
+/* ===================== RESET ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===================== BODY ===================== */
+body {
+  background-color: #632024;
+  font-family: 'Zen Dots', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===================== HEADER ===================== */
+.header {
+  padding: 15px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  background-color: #632024;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+/* ===================== NAV ===================== */
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 28px;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: #E67E22;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px black;
+
+  transition: 
+    color 0.3s ease,
+    text-shadow 0.3s ease,
+    transform 0.2s ease;
+}
+
+.nav-list a:hover {
+  color: #F39C12;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* ===================== SEARCH BOX ===================== */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+
+  padding: 8px 16px;
+  border-radius: 22px;
+
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.search-box input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  color: #E67E22;
+  font-size: 13px;
+}
+
+.search-box input::placeholder {
+  color: #E67E22;
+}
+
+.search-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* ===================== NAME / LOGO ===================== */
+.name {
+  text-decoration: none;
+  color: #E67E22;
+  font-size: 20px;
+  letter-spacing: 1px;
+  text-shadow: 2px 2px 4px black;
+
+  padding: 8px 16px;
+  border-radius: 22px;
+
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar {
+  position: fixed;
+  top: 100px;          
+  left: 85px;          
+
+  width: 180px;
+  padding: 13px 13px;
+
+  background-color: #D5B893;
+  border-radius: 20px;
+
+  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.35);
+  z-index: 900;
+}
+
+/* ===================== SIDEBAR LIST ===================== */
+.sidebar-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center;
+
+  color: #632024;
+  text-shadow: 0px 0px 1px black;
+}
+
+.sidebar-list li {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.sidebar-list li:hover {
+  transform: translateX(4px);
+  opacity: 0.8;
+}
+
+.sidebar-list a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===================== SIDEBAR IMAGES ===================== */
+.sidebar-img {
+  width: 85%;
+  max-width: 120px;
+  display: block;
+  margin: 0 auto;
+
+  border-radius: 60px;
+  object-fit: cover;
+}
+
+.top-img {
+  margin-bottom: 10px;
+}
+
+.bottom-img {
+  margin-top: 10px;
+}
+
+/* ===================== MAIN CONTENT ===================== */
+main {
+  margin-left: 240px;   
+  padding: 32px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+
+  main {
+    margin-left: 0;
+  }
+}
+/* ===================== WELCOME SECTION ===================== */
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+
+  padding: 5px 40px;
+  margin-top: 20px;
+}
+
+/* ===================== WELCOME IMAGE ===================== */
+.welcome-img {
+  width: 100px;
+  height: 100px;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===================== WELCOME TEXT ===================== */
+.welcome h1 {
+  font-size: 40px;
+  color: #D5B893;
+  letter-spacing: 1px;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+}
+/* ===================== HERO ===================== */
+/* =========================
+   GLASS LAYER (زیر باکس‌ها)
+   ========================= */
+.hero-glass {
+  padding: 30px;
+  border-radius: 32px;
+
+  margin-top: 15px;
+  margin-left: 35px;
+
+  background: rgba(0, 0, 0, 0.35);   
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+
+/* =========================
+   GRID (۳ باکس کنار هم)
+   ========================= */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr; 
+  gap: 28px;
+  align-items: stretch;
+}
+
+
+/* =========================
+   TEXT BOX (Facts)
+   ========================= */
+.hero-facts {
+  background: #5A3A2A;          
+  padding: 28px 32px;
+  border-radius: 26px;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.hero-facts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-facts li {
+  color: #F3E6D8;
+  font-size: 17px;
+}
+
+
+/* =========================
+   IMAGE BOXES
+   ========================= */
+.hero-img-box {
+  background: #5A3A2A;           
+  height: 440px;
+  
+  border-radius: 26px;
+  overflow: hidden;
+
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+}
+
+.hero-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* =========================
+   RESPONSIVE (Mobile)
+   ========================= */
+@media (max-width: 900px) {
+  .hero {
+    padding: 40px 24px;
+  }
+
+  .hero-glass {
+    padding: 24px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;  
+  }
+
+  .hero-img-box {
+    height: 200px;
+  }
+}
+/* =========================
+   HERO BOX HOVER EFFECTS
+   ========================= */
+
+.hero-facts,
+.hero-img-box {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.hero-facts:hover,
+.hero-img-box:hover {
+  transform: translateY(-6px) scale(1.04);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+}
+.hero-img-box img {
+  transition: transform 0.5s ease;
+}
+
+.hero-img-box:hover img {
+  transform: scale(1.08);
+}
+.hero-img-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+/* =====================
+   GLOBAL GLASS SCROLLBAR
+   ===================== */
+
+/* ---------- Firefox ---------- */
+html {
+  scrollbar-width: auto; 
+  scrollbar-color: rgba(0, 0, 0, 0.65) transparent;
+}
+/* ---------- WebKit Browsers ---------- */
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 18px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+
