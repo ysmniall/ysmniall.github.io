@@ -250,8 +250,15 @@ html {
   padding: 22px 28px;
   margin-bottom: 28px;
   color: #f2ede9;
-  font-weight: 600;
+  font-weight: 400;
 }
+.personality-box-inside {
+  font-size: 0.95rem;
+  line-height: 2; 
+  font-weight: 100;
+  margin-bottom: -15px;
+}
+
 .traits-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
