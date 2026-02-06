@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+  }
 
 /* ===================== BODY ===================== */
 body {
@@ -11,6 +11,7 @@ body {
   font-family: 'Zen Dots', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-bottom: 180px;
 }
 
 /* ===================== HEADER ===================== */
@@ -130,7 +131,7 @@ body {
   padding: 18px 80px;
   margin: 0;
 
-  background-color: #6F4D38; /* همون قهوه‌ای سایتت */
+  background-color: #6F4D38; 
   border-radius: 999px;
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -149,6 +150,8 @@ body {
   opacity: 1;
   transform: translateY(-2px);
 }
+
+
 
 /* =====================
    GLOBAL GLASS SCROLLBAR
