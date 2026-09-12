@@ -18,21 +18,22 @@
     <article class="project-card glass">
       <span class="project-number">01 · M.Sc. Thesis</span>
       <h2>Fault-Tolerant Virtual Sensor for EV Battery Systems</h2>
-      <div class="project-meta">Sharif University of Technology · January 2026</div>
-      <p>Designed a robust deep-learning virtual sensor to estimate lithium-ion battery temperature and support Battery Management System reliability when physical sensors become inaccurate or fail. The approach uses a BiGRU model, two-stage training and fault-aware evaluation for transient and permanent sensor failures.</p>
+      <div class="project-meta">M.Sc. Thesis · Sharif University of Technology · January 2026</div>
+      <p>For my M.Sc. thesis, <em>Sensor-Based Virtual Approaches for Enhancing the Reliability of Electric Vehicles</em>, I designed a robust deep-learning virtual sensor for lithium-ion battery temperature estimation. The BiGRU-based system uses nominal training followed by robust fine-tuning, fault injection, and a physics-informed loss to preserve useful estimates when physical sensors become unreliable.</p>
       <figure class="project-figure">
         <img src="fig/ev_training_comparison.png" alt="Base training and robust fine-tuning comparison chart for the EV virtual sensor project">
         <figcaption>Training and validation comparison from the thesis experiments, shown in English for the portfolio.</figcaption>
       </figure>
       <figure class="project-figure">
         <img src="fig/ev_actual_vs_predicted.png" alt="Representative chart comparing measured battery temperature, virtual sensor prediction, and a faulty physical sensor during a fault interval">
-        <figcaption>Representative portfolio visualization of how the virtual sensor continues to follow battery temperature during a sensor-fault interval.</figcaption>
+        <figcaption>Conceptual portfolio visualization of the thesis behavior during a sensor fault; this is not a direct plot from the thesis dataset.</figcaption>
       </figure>
       <div class="metric-grid">
         <div class="metric"><strong>1.59°C</strong><span>MAE in nominal conditions</span></div>
         <div class="metric"><strong>8M+</strong><span>time-series samples</span></div>
         <div class="metric"><strong>4,477</strong><span>independent test files</span></div>
         <div class="metric"><strong>1.7 MB</strong><span>compact model footprint</span></div>
+        <div class="metric"><strong>264 ms</strong><span>CPU inference latency</span></div>
       </div>
       <div class="pill-row"><span class="pill">Python</span><span class="pill">PyTorch Lightning</span><span class="pill">BiGRU</span><span class="pill">Time Series</span><span class="pill">Fault Tolerance</span><span class="pill">ISO 26262</span></div>
       <div class="button-row"><a class="btn btn-primary" href="assets/Yasamin_Tavakoli_MSc_Thesis.pdf" target="_blank">View thesis PDF</a></div>
@@ -41,16 +42,18 @@
     <article class="project-card glass">
       <span class="project-number">02 · B.Sc. Thesis</span>
       <h2>Persian Sign Language Recognition</h2>
-      <div class="project-meta">Computer Engineering · Computer Vision</div>
-      <p>Developed a deep-learning based Persian Sign Language recognition system built on a custom dataset that I collected and prepared myself. The project covered the full workflow from photographing gestures and preparing the data to hand detection, preprocessing, model training, and evaluation for Persian sign classification.</p>
+      <div class="project-meta">B.Sc. Thesis · Babol Noshirvani University of Technology · June 2023</div>
+      <p>Developed a deep-learning system for recognizing static Persian Sign Language alphabet signs. I built the project end to end: collecting the original image dataset, detecting and cropping hands with MediaPipe, preprocessing the images, training multiple image-classification architectures, and evaluating their performance across 37 PSL classes.</p>
       <figure class="project-figure">
         <img src="fig/psl_pipeline_english.png" alt="English portfolio diagram showing the Persian Sign Language recognition pipeline from original image to MediaPipe hand detection, cropped hand, 224 by 224 resize, ResNet152 classification, and predicted sign class">
         <figcaption>Portfolio summary of the B.Sc. thesis workflow, using an English-only visual.</figcaption>
       </figure>
-      <div class="metric-grid"><div class="metric"><strong>4,070</strong><span>cropped hand images</span></div><div class="metric"><strong>37</strong><span>Persian sign classes</span></div><div class="metric"><strong>96.4%</strong><span>best test accuracy</span></div></div>
+      <div class="metric-grid"><div class="metric"><strong>4,070</strong><span>images in the custom dataset</span></div><div class="metric"><strong>36</strong><span>participants</span></div><div class="metric"><strong>37</strong><span>Persian sign classes</span></div><div class="metric"><strong>96.4%</strong><span>best test accuracy</span></div></div>
+      <h4>Model comparison</h4>
+      <div class="model-results"><div class="model-result"><strong>ResNet18</strong><span>94.97%</span></div><div class="model-result"><strong>ViT</strong><span>93.34%</span></div><div class="model-result model-result-best"><strong>ResNet152</strong><span>96.4%</span></div></div>
       <h4>What I owned</h4>
-      <ul><li>Collected images from 36 participants and built a custom PSL dataset across varied backgrounds and capture conditions</li><li>Used MediaPipe for hand detection and cropping, then resized images to 224 × 224 for model training</li><li>Trained and compared ResNet18, ViT, and ResNet152 models in Python and PyTorch</li><li>Built the recognition pipeline as groundwork for future sign-to-text and sign-to-speech applications</li></ul>
-      <div class="pill-row"><span class="pill">Python</span><span class="pill">PyTorch</span><span class="pill">MediaPipe</span><span class="pill">ResNet152</span><span class="pill">ViT</span><span class="pill">Computer Vision</span></div>
+      <ul><li>Collected images from 36 participants and built a custom PSL dataset across varied backgrounds and capture conditions</li><li>Used MediaPipe for hand detection and cropping, then resized images to 224 × 224 for model training</li><li>Trained and compared ResNet18, ViT, and ResNet152 models in Python and PyTorch</li><li>Implemented a complementary speech-to-text-to-sign display workflow as part of the broader communication concept</li></ul>
+      <div class="pill-row"><span class="pill">Python</span><span class="pill">PyTorch</span><span class="pill">MediaPipe</span><span class="pill">ResNet18</span><span class="pill">ResNet152</span><span class="pill">ViT</span><span class="pill">Hugging Face</span><span class="pill">Computer Vision</span></div>
       <div class="button-row"><a class="btn btn-primary" href="assets/Yasamin_Tavakoli_BSc_Thesis_PSL.pdf" target="_blank">View thesis PDF</a></div>
     </article>
 

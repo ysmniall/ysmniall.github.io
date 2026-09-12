@@ -7,9 +7,9 @@ const search = document.querySelector('#portfolioSearch');
 if (search) {
   const destinations = [
     { terms: ['profile','about','yasamin','bio','education'], url: 'profile.html' },
-    { terms: ['skill','python','node','javascript','html','css','nlp','vision','pytorch'], url: 'skills.html' },
-    { terms: ['project','thesis','battery','sensor','sign language','qcri','image','video'], url: 'projects.html' },
-    { terms: ['journey','experience','steel alborz','sharif','career','work'], url: 'journey.html' }
+    { terms: ['skill','python','node','javascript','html','css','nlp','vision','pytorch','mediapipe','resnet','vit','bigru','hugging face'], url: 'skills.html' },
+    { terms: ['project','thesis','battery','sensor','sign language','persian sign language','psl','qcri','image','video','mountaineering','resnet152'], url: 'projects.html' },
+    { terms: ['journey','experience','steel alborz','sharif','babol','career','work','education'], url: 'journey.html' }
   ];
 
   search.addEventListener('keydown', (event) => {
