@@ -42,10 +42,16 @@
       <span class="project-number">02 · B.Sc. Thesis</span>
       <h2>Persian Sign Language Recognition</h2>
       <div class="project-meta">Computer Engineering · Computer Vision</div>
-      <p>Built an end-to-end Persian Sign Language recognition project starting with original data collection. I photographed gestures, created and prepared a custom dataset, then used image-processing and recognition techniques to identify signs and work toward recognition of words and sentences.</p>
+      <p>Developed a deep-learning based Persian Sign Language recognition system built on a custom dataset that I collected and prepared myself. The project covered the full workflow from photographing gestures and preparing the data to hand detection, preprocessing, model training, and evaluation for Persian sign classification.</p>
+      <figure class="project-figure">
+        <img src="fig/psl_pipeline_english.png" alt="English portfolio diagram showing the Persian Sign Language recognition pipeline from original image to MediaPipe hand detection, cropped hand, 224 by 224 resize, ResNet152 classification, and predicted sign class">
+        <figcaption>Portfolio summary of the B.Sc. thesis workflow, using an English-only visual.</figcaption>
+      </figure>
+      <div class="metric-grid"><div class="metric"><strong>4,070</strong><span>cropped hand images</span></div><div class="metric"><strong>37</strong><span>Persian sign classes</span></div><div class="metric"><strong>96.4%</strong><span>best test accuracy</span></div></div>
       <h4>What I owned</h4>
-      <ul><li>Image acquisition and custom dataset creation</li><li>Image preprocessing and recognition pipeline development</li><li>Sign recognition beyond isolated gestures toward words and sentences</li></ul>
-      <div class="pill-row"><span class="pill">Computer Vision</span><span class="pill">Image Processing</span><span class="pill">Dataset Creation</span><span class="pill">Pattern Recognition</span></div>
+      <ul><li>Collected images from 36 participants and built a custom PSL dataset across varied backgrounds and capture conditions</li><li>Used MediaPipe for hand detection and cropping, then resized images to 224 × 224 for model training</li><li>Trained and compared ResNet18, ViT, and ResNet152 models in Python and PyTorch</li><li>Built the recognition pipeline as groundwork for future sign-to-text and sign-to-speech applications</li></ul>
+      <div class="pill-row"><span class="pill">Python</span><span class="pill">PyTorch</span><span class="pill">MediaPipe</span><span class="pill">ResNet152</span><span class="pill">ViT</span><span class="pill">Computer Vision</span></div>
+      <div class="button-row"><a class="btn btn-primary" href="assets/Yasamin_Tavakoli_BSc_Thesis_PSL.pdf" target="_blank">View thesis PDF</a></div>
     </article>
 
     <article class="project-card glass">
