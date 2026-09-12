@@ -147,6 +147,7 @@ a { color: inherit; }
 .btn-primary { background: var(--orange); color: #24130b; }
 .btn-secondary { background: rgba(0,0,0,.25); color: var(--cream); }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,.28); }
+.btn-disabled { opacity: .58; cursor: default; pointer-events: none; }
 
 .quick-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 24px; }
 .quick-card { padding: 22px; }
