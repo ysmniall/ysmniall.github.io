@@ -20,6 +20,14 @@
       <h2>Fault-Tolerant Virtual Sensor for EV Battery Systems</h2>
       <div class="project-meta">Sharif University of Technology · January 2026</div>
       <p>Designed a robust deep-learning virtual sensor to estimate lithium-ion battery temperature and support Battery Management System reliability when physical sensors become inaccurate or fail. The approach uses a BiGRU model, two-stage training and fault-aware evaluation for transient and permanent sensor failures.</p>
+      <figure class="project-figure">
+        <img src="fig/ev_training_comparison.png" alt="Base training and robust fine-tuning comparison chart for the EV virtual sensor project">
+        <figcaption>Training and validation comparison from the thesis experiments, shown in English for the portfolio.</figcaption>
+      </figure>
+      <figure class="project-figure">
+        <img src="fig/ev_actual_vs_predicted.png" alt="Representative chart comparing measured battery temperature, virtual sensor prediction, and a faulty physical sensor during a fault interval">
+        <figcaption>Representative portfolio visualization of how the virtual sensor continues to follow battery temperature during a sensor-fault interval.</figcaption>
+      </figure>
       <div class="metric-grid">
         <div class="metric"><strong>1.59°C</strong><span>MAE in nominal conditions</span></div>
         <div class="metric"><strong>8M+</strong><span>time-series samples</span></div>

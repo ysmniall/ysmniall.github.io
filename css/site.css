@@ -179,6 +179,9 @@ a { color: inherit; }
 .project-card h2 { color: #f5dfce; font-size: 20px; line-height: 1.45; margin-bottom: 8px; }
 .project-meta { font-family: Arial,sans-serif; color: var(--muted); font-size: 13px; margin-bottom: 16px; }
 .project-card p { font-family: Arial,sans-serif; font-size: 14px; line-height: 1.72; color: #f0e4dc; }
+.project-figure { margin: 20px 0 8px; padding: 14px; border-radius: 20px; background: rgba(255,255,255,.08); }
+.project-figure img { width: 100%; display: block; border-radius: 14px; background: #fff; }
+.project-figure figcaption { margin-top: 10px; font-family: Arial,sans-serif; font-size: 12px; line-height: 1.6; color: var(--muted); }
 .metric-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin: 18px 0; }
 .metric { padding: 13px; border-radius: 16px; background: rgba(0,0,0,.23); }
 .metric strong { display: block; color: var(--orange-bright); font-size: 13px; }
